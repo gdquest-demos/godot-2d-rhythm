@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/BeatSpawner.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://assets/Cephalopod.ogg" type="AudioStream" id=3]
+[ext_resource path="res://src/RhythmGame.gd" type="Script" id=4]
+[ext_resource path="res://src/BeatSynchronizer.gd" type="Script" id=5]
+[ext_resource path="res://src/Editor/Patterns.tscn" type="PackedScene" id=6]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+glow_intensity = 0.4
+glow_blend_mode = 0
+glow_bicubic_upscale = true
+
+[node name="RhythmGame" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="BeatSynchronizer" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BeatSynchronizer"]
+stream = ExtResource( 3 )
+volume_db = -50.738
+
+[node name="Timer" type="Timer" parent="BeatSynchronizer"]
+
+[node name="Sprite" type="Sprite" parent="BeatSynchronizer"]
+position = Vector2( 1198.59, 649.279 )
+texture = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="BeatSynchronizer"]
+
+[node name="PatternSpawner" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="Patterns" parent="PatternSpawner" instance=ExtResource( 6 )]
+visible = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
