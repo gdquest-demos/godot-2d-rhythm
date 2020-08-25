@@ -1,75 +1,62 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://src/Hits/HitRoller.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/Editor/Patterns.gd" type="Script" id=2]
-[ext_resource path="res://src/Hits/HitBeat.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Editor/EditorHitRest.gd" type="Script" id=1]
+[ext_resource path="res://src/Editor/EditorHitBeat.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Editor/EditorHitRoller.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -0.411484, 0.919983, 73.5899, 67.6459, -73.5899, -67.6459, -138.923, 54.2061, 0, 0, 0, 0, -229.894, -200.329 )
+"points": PoolVector2Array( 0, 0, 0, 0, 640, 240, -195.133, -1.05861, 195.133, 1.05861, 800, 400, 0, 0, 0, 0, 960, 560 )
 }
 
 [sub_resource type="Curve2D" id=2]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -0.411484, 0.919983, 73.5899, 67.6459, -73.5899, -67.6459, -138.923, 54.2061, 0, 0, 0, 0, -339.634, 129.58 )
+"points": PoolVector2Array( 0, 0, 0, 0, 640, 240, 0, 0, 0, 0, 240, 240 )
 }
 
 [sub_resource type="Curve2D" id=3]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -0.411484, 0.919983, -5.60605, -75.1897, 5.60605, 75.1897, -129.94, 131.246, 0, 0, 0, 0, 2.99579, 267.011 )
+"points": PoolVector2Array( 0, 0, 0, 0, 640, 240, 0, 0, 0, 0, 1040, 240 )
 }
 
 [sub_resource type="Curve2D" id=4]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -0.411484, 0.919983, 63.6896, 21.8242, -63.6896, -21.8242, -167.801, 58.0276, 0, 0, 0, 0, -320.251, -65.4447 )
-}
-
-[sub_resource type="Curve2D" id=5]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -0.411484, 0.919983, -7.38785, -110.826, 7.38785, 110.826, -80.6982, 149.351, 0, 0, 0, 0, 68.9728, 275.858 )
-}
-
-[sub_resource type="Curve2D" id=6]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -0.411484, 0.919983, -81.6265, -0.267281, 81.6265, 0.267281, 131.18, -30.5215, 0, 0, 0, 0, 255.63, 6.24811 )
-}
-
-[sub_resource type="Curve2D" id=7]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -0.411484, 0.919983, 113.678, -5.57622, -113.678, 5.57622, -135.857, 42.5355, 0, 0, 0, 0, -290.006, -8.37616 )
+"points": PoolVector2Array( 0, 0, 0, 0, 640, 240, 0, 0, 0, 0, 480, 400 )
 }
 
 [node name="Patterns" type="Node2D"]
-script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="0" type="Node2D" parent="."]
-visible = false
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Beat" parent="0" instance=ExtResource( 3 )]
-position = Vector2( 89.7969, 93.1644 )
-beat_number = 1
+[node name="EditorHitBeat" parent="0" instance=ExtResource( 2 )]
 
-[node name="Beat2" parent="0" instance=ExtResource( 3 )]
-position = Vector2( 258.166, 93.1644 )
-beat_number = 2
+[node name="EditorHitBeat2" parent="0" instance=ExtResource( 2 )]
+position = Vector2( 320, 160 )
 
-[node name="Beat3" parent="0" instance=ExtResource( 3 )]
-position = Vector2( 429.519, 89.9794 )
-beat_number = 3
+[node name="EditorHitBeat3" parent="0" instance=ExtResource( 2 )]
+position = Vector2( 480, 160 )
 
-[node name="Beat4" parent="0" instance=ExtResource( 3 )]
-position = Vector2( 597.888, 89.9794 )
-beat_number = 4
+[node name="EditorHitBeat4" parent="0" instance=ExtResource( 2 )]
+position = Vector2( 640, 160 )
 
-[node name="BeatLine" parent="0" instance=ExtResource( 1 )]
-position = Vector2( 611.26, 260.386 )
-beat_number = 5
+[node name="EditorHitRoller" parent="0" instance=ExtResource( 4 )]
+position = Vector2( 160, -80 )
+curve = SubResource( 1 )
+
+[node name="EditorHitRest" type="Node" parent="0"]
+script = ExtResource( 1 )
+
+[node name="EditorHitRest2" type="Node" parent="0"]
+script = ExtResource( 1 )
+
+[node name="EditorHitRest3" type="Node" parent="0"]
+script = ExtResource( 1 )
 
 [node name="1" type="Node2D" parent="."]
 visible = false
@@ -77,26 +64,33 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Beat" parent="1" instance=ExtResource( 3 )]
-position = Vector2( 891.515, 623.197 )
-beat_number = 1
+[node name="EditorHitBeat" parent="1" instance=ExtResource( 2 )]
+position = Vector2( 1120, 640 )
 
-[node name="Beat2" parent="1" instance=ExtResource( 3 )]
-position = Vector2( 705.026, 623.197 )
-beat_number = 2
+[node name="EditorHitRoller" parent="1" instance=ExtResource( 4 )]
+position = Vector2( 320, 400 )
+curve = SubResource( 2 )
+beat_duration = 1
 
-[node name="Beat3" parent="1" instance=ExtResource( 3 )]
-position = Vector2( 534.975, 621.693 )
-beat_number = 3
+[node name="EditorHitRest" type="Node" parent="1"]
+script = ExtResource( 1 )
 
-[node name="Beat4" parent="1" instance=ExtResource( 3 )]
-position = Vector2( 370.349, 625.057 )
-beat_number = 4
+[node name="EditorHitRoller2" parent="1" instance=ExtResource( 4 )]
+position = Vector2( -80, 240 )
+curve = SubResource( 3 )
+beat_duration = 1
 
-[node name="BeatLine" parent="1" instance=ExtResource( 1 )]
-position = Vector2( 310.754, 456.392 )
-curve = SubResource( 1 )
-beat_number = 5
+[node name="EditorHitRest2" type="Node" parent="1"]
+script = ExtResource( 1 )
+
+[node name="EditorHitBeat2" parent="1" instance=ExtResource( 2 )]
+position = Vector2( 1120, 480 )
+
+[node name="EditorHitBeat3" parent="1" instance=ExtResource( 2 )]
+position = Vector2( 1120, 320 )
+
+[node name="EditorHitRest3" type="Node" parent="1"]
+script = ExtResource( 1 )
 
 [node name="2" type="Node2D" parent="."]
 visible = false
@@ -104,82 +98,28 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Beat" parent="2" instance=ExtResource( 3 )]
-position = Vector2( 1128.97, 116.006 )
-beat_number = 1
+[node name="EditorHitBeat" parent="2" instance=ExtResource( 2 )]
+position = Vector2( 960, 320 )
 
-[node name="BeatLine2" parent="2" instance=ExtResource( 1 )]
-position = Vector2( 999.405, 221.191 )
-curve = SubResource( 2 )
-beat_number = 2
-show_delay = 2
+[node name="EditorHitBeat2" parent="2" instance=ExtResource( 2 )]
+position = Vector2( 800, 400 )
 
-[node name="Beat2" parent="2" instance=ExtResource( 3 )]
-position = Vector2( 515.838, 453.682 )
-beat_number = 4
+[node name="EditorHitBeat3" parent="2" instance=ExtResource( 2 )]
+position = Vector2( 640, 320 )
 
-[node name="Beat3" parent="2" instance=ExtResource( 3 )]
-position = Vector2( 184.39, 343.968 )
-beat_number = 5
+[node name="EditorHitBeat4" parent="2" instance=ExtResource( 2 )]
+position = Vector2( 480, 400 )
 
-[node name="Beat4" parent="2" instance=ExtResource( 3 )]
-position = Vector2( 130.846, 619.625 )
-beat_number = 6
-
-[node name="3" type="Node2D" parent="."]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Beat" parent="3" instance=ExtResource( 3 )]
-position = Vector2( 851.78, 127.319 )
-beat_number = 1
-
-[node name="BeatLine2" parent="3" instance=ExtResource( 1 )]
-position = Vector2( 999.405, 221.191 )
-curve = SubResource( 3 )
-beat_number = 2
-show_delay = 2
-
-[node name="Beat2" parent="3" instance=ExtResource( 3 )]
-position = Vector2( 1115.4, 591.374 )
-beat_number = 4
-
-[node name="BeatLine3" parent="3" instance=ExtResource( 1 )]
-position = Vector2( 887.148, 598.806 )
+[node name="EditorHitRoller" parent="2" instance=ExtResource( 4 )]
+position = Vector2( -320, 160 )
 curve = SubResource( 4 )
-beat_number = 5
-show_delay = 2
+beat_duration = 1
 
-[node name="Beat3" parent="3" instance=ExtResource( 3 )]
-position = Vector2( 368.618, 557.931 )
-beat_number = 7
+[node name="EditorHitRest" type="Node" parent="2"]
+script = ExtResource( 1 )
 
-[node name="Beat4" parent="3" instance=ExtResource( 3 )]
-position = Vector2( 194.866, 553.573 )
-beat_number = 8
+[node name="EditorHitBeat5" parent="2" instance=ExtResource( 2 )]
+position = Vector2( 160, 400 )
 
-[node name="4" type="Node2D" parent="."]
-visible = false
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="BeatLine2" parent="4" instance=ExtResource( 1 )]
-position = Vector2( 309.849, 139.228 )
-curve = SubResource( 5 )
-beat_number = 1
-show_delay = 2
-
-[node name="BeatLine3" parent="4" instance=ExtResource( 1 )]
-position = Vector2( 541.479, 442.008 )
-curve = SubResource( 6 )
-beat_number = 3
-show_delay = 1
-lifetime_beats = 1.0
-
-[node name="BeatLine4" parent="4" instance=ExtResource( 1 )]
-position = Vector2( 840.106, 625.99 )
-curve = SubResource( 7 )
-beat_number = 5
-lifetime_beats = 1.0
+[node name="EditorHitRest4" type="Node" parent="2"]
+script = ExtResource( 1 )

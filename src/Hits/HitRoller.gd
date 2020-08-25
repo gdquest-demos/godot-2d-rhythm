@@ -4,9 +4,9 @@ onready var path_follow = $PathFollow2D
 onready var start_beat = $Beat
 onready var animation_player = $AnimationPlayer
 
-export var beat_number := 0
+export var beat_number := 0 setget set_beat_number
 export var show_delay := 0
-export var lifetime_beats = 2.0
+export var beat_duration = 2.0
 
 var bps = 60.0/124
 
@@ -16,31 +16,48 @@ var moving = false
 var score = 1
 
 var segments = 10
-var data = { }
 
 func _ready():
 	modulate.a = 0.0
 	animation_player.play("show")
-	$Line2D.all_points = curve.get_baked_points()
-	
-	data = {
-		"show_delay" : show_delay,
-		"type" : "roller",
-		"position" : global_position,
-		"curve" : $Line2D.all_points,
-		"beat_number" : beat_number,
-		"lifetime_beats" : lifetime_beats
-		}
-	
-	$Beat.beat_number = beat_number
-	$Label.rect_position = $Line2D.all_points[$Line2D.all_points.size() - 1] - Vector2(50, 50)
-	$Label.text = str(beat_number + 1)
-	$Label.visible = true
 	
 	yield(start_beat, "beat_aligned")
 	moving = true
+	$Timer.start(bps *  beat_duration / segments)
+
+
+func initialize(_dict : Dictionary):
 	
-	$Timer.start(bps *  lifetime_beats / segments)
+	if _dict.has("beat_number"):
+		self.beat_number = _dict["beat_number"]
+	
+	if _dict.has("beat_duration"):
+		beat_duration = _dict["beat_duration"]
+	
+	if _dict.has("curve"):
+		curve = _dict["curve"]
+	
+	$Line2D.all_points = curve.get_baked_points()
+	
+	$FirstBeat.rect_position = $Line2D.all_points[0] - Vector2(50, 50)
+	$SecondBeat.rect_position = $Line2D.all_points[$Line2D.all_points.size() - 1] - Vector2(50, 50)
+	$SecondBeat.text = str(beat_number + 1)
+	$SecondBeat.visible = true
+	
+	if _dict.has("position"):
+		position = _dict["position"]
+	
+	$Beat.position = curve.get_point_position(0)
+	
+	if _dict.has("color"):
+		set_color(_dict["color"])
+
+
+func set_beat_number(_no : int):
+	$Beat.set_beat_number(_no)
+	$FirstBeat.text = str(_no)
+	beat_number = _no
+	$SecondBeat.text = str(beat_number)
 
 func set_color(color):
 	fill_color = color
@@ -58,7 +75,7 @@ func _draw():
 
 
 func get_speed():
-	return 1.0/bps/lifetime_beats
+	return 1.0/bps/beat_duration
 
 func set_text(_one, _two):
 	start_beat.set_text(_one)
@@ -82,7 +99,7 @@ func _complete():
 	moving = false
 	
 	if player_tracking:
-		Events.emit_signal("scored", score)
+		Events.emit_signal("scored", {"score" : score})
 	
 	animation_player.play("destroy")
 

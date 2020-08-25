@@ -28,21 +28,21 @@ var score = 0
 
 var fill_color := Colors.ORANGE
 
-var data = {
-	
-	}
-
 
 func _ready():
-	data = {
-		"type" : "normal",
-		"show_delay" : show_delay,
-		"position" : global_position,
-		"beat_number" : beat_number
-		}
 	animation_player.play("show")
-	modulate.a = 0.0
-	set_beat_number(beat_number)
+
+
+func initialize(_dict : Dictionary):
+	
+	if _dict.has("beat_number"):
+		self.beat_number = _dict["beat_number"]
+	
+	if _dict.has("global_position"):
+		global_position = _dict["global_position"]
+	
+	if _dict.has("color"):
+		set_color(_dict["color"])
 
 
 func set_beat_number(_no : int):
@@ -81,12 +81,12 @@ func _process(delta):
 		score = 3
 	
 	if not beat_aligned and radius <= radius_perfect:
-		emit_signal("beat_aligned")
+		emit_signal("beat_aligned", {})
 		animation_player.play("destroy")
 		beat_aligned = true
 
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("touch"):
-		Events.emit_signal("scored", score)
+		Events.emit_signal("scored", {"score" : score})
 		touch_area.collision_layer = 0

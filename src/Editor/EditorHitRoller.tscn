@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/Montserrat-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://src/Editor/EditorHitRoller.gd" type="Script" id=2]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 640, 240, 59.4905, 51.6333, -59.4905, -51.6333, 400, 320, 0, 0, 0, 0, 480, 160 )
+}
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+font_data = ExtResource( 1 )
+
+[node name="EditorHitRoller" type="Path2D"]
+self_modulate = Color( 1, 1, 1, 1 )
+curve = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="LabelFirstBeat" type="Label" parent="."]
+margin_left = 604.722
+margin_top = 202.202
+margin_right = 684.722
+margin_bottom = 282.202
+rect_min_size = Vector2( 80, 80 )
+custom_fonts/font = SubResource( 2 )
+text = "1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelSecondBeat" type="Label" parent="."]
+margin_left = 440.0
+margin_top = 120.0
+margin_right = 520.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 80, 80 )
+custom_fonts/font = SubResource( 2 )
+text = "2"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="tree_entered" from="." to="." method="_on_EditorHitRoller_tree_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/BeatSpawner.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -6,12 +6,52 @@
 [ext_resource path="res://src/RhythmGame.gd" type="Script" id=4]
 [ext_resource path="res://src/BeatSynchronizer.gd" type="Script" id=5]
 [ext_resource path="res://src/Editor/Patterns.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/UI/UIScore.gd" type="Script" id=7]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Sprite
+
+
+onready var tween := $Tween
+
+
+func _ready():
+	Events.connect(\"beat_incremented\", self, \"_pulse\")
+
+
+func _pulse(_msg : Dictionary):
+	var _beats_per_second = 100
+	
+	if _msg.has(\"bps\"):
+		_beats_per_second = _msg[\"bps\"]
+	
+	tween.interpolate_property(
+		self,
+		\"scale\",
+		Vector2.ONE,
+		Vector2.ONE*2, _beats_per_second/32, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	tween.interpolate_property(
+		self,
+		\"scale\",
+		Vector2.ONE*2,
+		Vector2.ONE, _beats_per_second/4, Tween.TRANS_LINEAR, Tween.EASE_OUT, _beats_per_second/32)
+	tween.start()
+"
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
 glow_intensity = 0.4
 glow_blend_mode = 0
 glow_bicubic_upscale = true
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Label
+
+
+func _process(delta):
+	text = str(Engine.get_frames_per_second())
+
+"
 
 [node name="RhythmGame" type="Node2D"]
 script = ExtResource( 4 )
@@ -21,15 +61,16 @@ script = ExtResource( 5 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BeatSynchronizer"]
 stream = ExtResource( 3 )
-volume_db = -50.738
+volume_db = -32.563
 
 [node name="Timer" type="Timer" parent="BeatSynchronizer"]
 
-[node name="Sprite" type="Sprite" parent="BeatSynchronizer"]
+[node name="Metronome" type="Sprite" parent="BeatSynchronizer"]
 position = Vector2( 1198.59, 649.279 )
 texture = ExtResource( 2 )
+script = SubResource( 3 )
 
-[node name="Tween" type="Tween" parent="BeatSynchronizer"]
+[node name="Tween" type="Tween" parent="BeatSynchronizer/Metronome"]
 
 [node name="PatternSpawner" type="Node" parent="."]
 script = ExtResource( 1 )
@@ -39,3 +80,38 @@ visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="MarginContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI"]
+margin_right = 1280.0
+margin_bottom = 720.0
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
+margin_left = 628.0
+margin_right = 652.0
+margin_bottom = 14.0
+mouse_filter = 2
+size_flags_horizontal = 6
+
+[node name="UIScore" type="Label" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
+margin_right = 24.0
+margin_bottom = 14.0
+text = "100"
+script = ExtResource( 7 )
+
+[node name="FPS" type="Label" parent="CanvasLayer/UI/VBoxContainer"]
+margin_top = 18.0
+margin_right = 1280.0
+margin_bottom = 32.0
+text = "60"
+script = SubResource( 2 )

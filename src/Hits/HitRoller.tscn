@@ -142,7 +142,7 @@ shape = SubResource( 3 )
 
 [node name="Line2D" type="Line2D" parent="."]
 z_index = -1
-width = 21.1093
+width = 48.0
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -153,6 +153,7 @@ wait_time = 0.01
 autostart = true
 
 [node name="Beat" parent="." instance=ExtResource( 3 )]
+modulate = Color( 1, 1, 1, 1 )
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
@@ -161,8 +162,20 @@ one_shot = true
 anims/destroy = SubResource( 5 )
 anims/show = SubResource( 6 )
 
-[node name="Label" type="Label" parent="."]
-visible = false
+[node name="FirstBeat" type="Label" parent="."]
+margin_left = -51.7033
+margin_top = -50.1493
+margin_right = 48.2968
+margin_bottom = 49.8507
+custom_fonts/font = SubResource( 7 )
+text = "1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SecondBeat" type="Label" parent="."]
 margin_left = 192.403
 margin_top = 167.23
 margin_right = 292.403
@@ -174,9 +187,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="BeatLine" type="Position2D" parent="."]
-self_modulate = Color( 1.10196, 1.10196, 1.10196, 1 )
 [connection signal="input_event" from="PathFollow2D/Roller" to="." method="_on_Area2D_input_event"]
 [connection signal="mouse_entered" from="PathFollow2D/Roller" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="PathFollow2D/Roller" to="." method="_on_Area2D_mouse_exited"]
