@@ -4,15 +4,6 @@ export var beat_number := 0 setget set_beat_number
 export var show_delay := 0
 export var beat_duration := 2.0
 
-onready var roller_path := $RollerPath
-onready var roller := $RollerPath/Roller
-onready var roller_line := $RollerLine2D
-onready var label_first := $LabelFirstBeat
-onready var label_second := $LabelSecondBeat
-onready var start_beat := $Beat
-onready var animation_player := $AnimationPlayer
-onready var timer := $Timer
-
 var bps := 60.0 / 124
 var player_tracking := false
 var moving := false
@@ -23,6 +14,15 @@ var _path_end := Vector2.ZERO
 var fill_color := Colors.ORANGE
 
 var score := 1
+
+onready var roller_path := $RollerPath
+onready var roller := $RollerPath/Roller
+onready var roller_line := $RollerLine2D
+onready var label_first := $LabelFirstBeat
+onready var label_second := $LabelSecondBeat
+onready var start_beat := $Beat
+onready var animation_player := $AnimationPlayer
+onready var timer := $Timer
 
 
 func _ready() -> void:

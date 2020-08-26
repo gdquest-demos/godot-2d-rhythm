@@ -4,14 +4,14 @@ export var enabled := true
 export var pattern_count := 20
 export var beat_delay := 12
 
-onready var patterns = $Patterns
-
 var track = []
 
 var scenes = {
 	"hit_beat": preload("res://src/Hits/HitBeat.tscn"),
 	"hit_roller": preload("res://src/Hits/HitRoller.tscn")
 }
+
+onready var patterns = $Patterns
 
 
 func _ready() -> void:

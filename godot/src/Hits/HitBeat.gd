@@ -5,9 +5,6 @@ signal beat_aligned
 export var beat_number := 0 setget set_beat_number
 export var show_delay := 0
 
-onready var animation_player := $AnimationPlayer
-onready var touch_area := $Area2D
-
 var beat_aligned := false
 var bps := 60.0 / 124.0
 var beat_delay := 4.0  #beats before perfect
@@ -25,6 +22,9 @@ var fill_color := Colors.ORANGE
 
 var score := 0
 
+onready var animation_player := $AnimationPlayer
+onready var touch_area := $Area2D
+
 
 func _ready() -> void:
 	animation_player.play("show")
@@ -33,10 +33,10 @@ func _ready() -> void:
 func initialize(_dict: Dictionary) -> void:
 	if _dict.has("beat_number"):
 		self.beat_number = _dict["beat_number"]
-	
+
 	if _dict.has("bps"):
 		self.bps = _dict["bps"]
-	
+
 	if _dict.has("global_position"):
 		global_position = _dict["global_position"]
 

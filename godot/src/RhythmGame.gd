@@ -14,8 +14,8 @@ func _create_score_fx(_msg: Dictionary) -> void:
 	if _msg.has("score"):
 		var new_score_text = score_text_scene.instance()
 		new_score_text.global_position = get_global_mouse_position()
-		new_score_text.set_score(_msg["score"])
 		add_child(new_score_text)
+		new_score_text.set_score(_msg["score"])
 
 
 func _game_over(_msg: Dictionary) -> void:

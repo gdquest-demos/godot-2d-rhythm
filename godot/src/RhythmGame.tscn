@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/BeatSpawner.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -6,9 +6,7 @@
 [ext_resource path="res://src/RhythmGame.gd" type="Script" id=4]
 [ext_resource path="res://src/BeatSynchronizer.gd" type="Script" id=5]
 [ext_resource path="res://src/Editor/Patterns.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/UI/UIScore.gd" type="Script" id=7]
-[ext_resource path="res://assets/theme/FontDefault.tres" type="DynamicFont" id=8]
-[ext_resource path="res://assets/theme/theme.tres" type="Theme" id=9]
+[ext_resource path="res://src/UI/UI.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "begin_game"
@@ -123,15 +121,7 @@ func _pulse(_msg : Dictionary):
 	tween.start()
 "
 
-[sub_resource type="GDScript" id=4]
-script/source = "extends Button
-
-
-func _on_ButtonRetry_pressed():
-	get_tree().reload_current_scene()
-"
-
-[sub_resource type="Environment" id=5]
+[sub_resource type="Environment" id=4]
 background_mode = 4
 glow_intensity = 0.4
 glow_blend_mode = 0
@@ -158,82 +148,16 @@ script = SubResource( 3 )
 
 [node name="Tween" type="Tween" parent="BeatSynchronizer/Metronome"]
 
-[node name="PatternSpawner" type="Node" parent="."]
+[node name="BeatSpawner" type="Node" parent="."]
 script = ExtResource( 1 )
 pattern_count = 9
 
-[node name="Patterns" parent="PatternSpawner" instance=ExtResource( 6 )]
+[node name="Patterns" parent="BeatSpawner" instance=ExtResource( 6 )]
 visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="UI" type="MarginContainer" parent="CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-theme = ExtResource( 9 )
-custom_constants/margin_right = 80
-custom_constants/margin_top = 12
-custom_constants/margin_left = 80
-custom_constants/margin_bottom = 80
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI"]
-margin_left = 80.0
-margin_top = 12.0
-margin_right = 1200.0
-margin_bottom = 640.0
-mouse_filter = 2
-
-[node name="UIScore" type="Label" parent="CanvasLayer/UI/VBoxContainer"]
-modulate = Color( 1, 1, 1, 0 )
-margin_right = 1120.0
-margin_bottom = 79.0
-custom_fonts/font = ExtResource( 8 )
-text = "0"
-align = 1
-script = ExtResource( 7 )
-
-[node name="GameOverScreen" type="PanelContainer" parent="CanvasLayer/UI/VBoxContainer"]
-visible = false
-modulate = Color( 1, 1, 1, 0 )
-margin_top = 83.0
-margin_right = 1120.0
-margin_bottom = 628.0
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/VBoxContainer/GameOverScreen"]
-margin_left = 6.0
-margin_top = 6.0
-margin_right = 1114.0
-margin_bottom = 539.0
-
-[node name="GameOverInfo" type="Label" parent="CanvasLayer/UI/VBoxContainer/GameOverScreen/VBoxContainer"]
-margin_top = 51.0
-margin_right = 1108.0
-margin_bottom = 212.0
-size_flags_horizontal = 3
-size_flags_vertical = 6
-text = "Thanks for playing this Godot rhythm game demo!"
-align = 1
-valign = 1
-autowrap = true
-
-[node name="ButtonRetry" type="Button" parent="CanvasLayer/UI/VBoxContainer/GameOverScreen/VBoxContainer"]
-margin_left = 404.0
-margin_top = 325.0
-margin_right = 704.0
-margin_bottom = 475.0
-rect_min_size = Vector2( 300, 150 )
-focus_mode = 0
-size_flags_horizontal = 4
-size_flags_vertical = 6
-enabled_focus_mode = 0
-text = "Retry"
-script = SubResource( 4 )
+[node name="UI" parent="CanvasLayer" instance=ExtResource( 7 )]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 5 )
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/GameOverScreen/VBoxContainer/ButtonRetry" to="CanvasLayer/UI/VBoxContainer/GameOverScreen/VBoxContainer/ButtonRetry" method="_on_ButtonRetry_pressed"]
+environment = SubResource( 4 )

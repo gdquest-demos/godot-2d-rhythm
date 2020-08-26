@@ -3,12 +3,12 @@ extends Node
 export var bpm := 124
 export var start_delay := 0.0
 
-onready var stream := $AudioStreamPlayer
-
 var time_delay := 0.0
 var bps := 60.0 / bpm
 var last_beat := 0
 var last_time := 0.0
+
+onready var stream := $AudioStreamPlayer
 
 
 func play_audio() -> void:
