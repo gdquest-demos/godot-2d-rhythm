@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/BeatSpawner.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -7,8 +7,10 @@
 [ext_resource path="res://src/BeatSynchronizer.gd" type="Script" id=5]
 [ext_resource path="res://src/Editor/Patterns.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/UI/UIScore.gd" type="Script" id=7]
+[ext_resource path="res://assets/FontDefault.tres" type="DynamicFont" id=8]
+[ext_resource path="res://assets/theme/theme.tres" type="Theme" id=9]
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=1]
 script/source = "extends Sprite
 
 
@@ -38,20 +40,87 @@ func _pulse(_msg : Dictionary):
 	tween.start()
 "
 
-[sub_resource type="Environment" id=1]
+[sub_resource type="Environment" id=2]
 background_mode = 4
 glow_intensity = 0.4
 glow_blend_mode = 0
 glow_bicubic_upscale = true
 
-[sub_resource type="GDScript" id=2]
-script/source = "extends Label
+[sub_resource type="GDScript" id=3]
+script/source = "extends Button
 
 
-func _process(delta):
-	text = str(Engine.get_frames_per_second())
-
+func _on_ButtonRetry_pressed():
+	get_tree().reload_current_scene()
 "
+
+[sub_resource type="Animation" id=5]
+resource_name = "begin_game"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("BeatSynchronizer/Metronome:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/UI/VBoxContainer/UIScore:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 3.5, 5.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "game_over"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/UI/VBoxContainer/GameOverScreen:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/UI/VBoxContainer/GameOverScreen:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BeatSynchronizer/AudioStreamPlayer:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 3.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, -16.0 ]
+}
 
 [node name="RhythmGame" type="Node2D"]
 script = ExtResource( 4 )
@@ -61,25 +130,26 @@ script = ExtResource( 5 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BeatSynchronizer"]
 stream = ExtResource( 3 )
-volume_db = -32.563
 
 [node name="Timer" type="Timer" parent="BeatSynchronizer"]
 
 [node name="Metronome" type="Sprite" parent="BeatSynchronizer"]
-position = Vector2( 1198.59, 649.279 )
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 60.0172, 661.052 )
 texture = ExtResource( 2 )
-script = SubResource( 3 )
+script = SubResource( 1 )
 
 [node name="Tween" type="Tween" parent="BeatSynchronizer/Metronome"]
 
 [node name="PatternSpawner" type="Node" parent="."]
 script = ExtResource( 1 )
+pattern_count = 9
 
 [node name="Patterns" parent="PatternSpawner" instance=ExtResource( 6 )]
 visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
+environment = SubResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -87,31 +157,77 @@ environment = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+theme = ExtResource( 9 )
+custom_constants/margin_top = 12
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI"]
+margin_top = 12.0
 margin_right = 1280.0
 margin_bottom = 720.0
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer"]
-margin_left = 628.0
-margin_right = 652.0
-margin_bottom = 14.0
-mouse_filter = 2
-size_flags_horizontal = 6
-
-[node name="UIScore" type="Label" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer"]
-margin_right = 24.0
-margin_bottom = 14.0
-text = "100"
+[node name="UIScore" type="Label" parent="CanvasLayer/UI/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 1280.0
+margin_bottom = 79.0
+custom_fonts/font = ExtResource( 8 )
+text = "0"
+align = 1
 script = ExtResource( 7 )
 
-[node name="FPS" type="Label" parent="CanvasLayer/UI/VBoxContainer"]
-margin_top = 18.0
+[node name="GameOverScreen" type="MarginContainer" parent="CanvasLayer/UI/VBoxContainer"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 83.0
 margin_right = 1280.0
-margin_bottom = 32.0
-text = "60"
-script = SubResource( 2 )
+margin_bottom = 708.0
+size_flags_vertical = 3
+custom_constants/margin_right = 80
+custom_constants/margin_top = 80
+custom_constants/margin_left = 80
+custom_constants/margin_bottom = 80
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/UI/VBoxContainer/GameOverScreen"]
+margin_left = 80.0
+margin_top = 80.0
+margin_right = 1200.0
+margin_bottom = 545.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/VBoxContainer/GameOverScreen/PanelContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 1112.0
+margin_bottom = 457.0
+
+[node name="GameOverInfo" type="Label" parent="CanvasLayer/UI/VBoxContainer/GameOverScreen/PanelContainer/VBoxContainer"]
+margin_top = 30.0
+margin_right = 1104.0
+margin_bottom = 191.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Thanks for playing this Godot rhythm game demo!"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="ButtonRetry" type="Button" parent="CanvasLayer/UI/VBoxContainer/GameOverScreen/PanelContainer/VBoxContainer"]
+margin_left = 402.0
+margin_top = 262.0
+margin_right = 702.0
+margin_bottom = 412.0
+rect_min_size = Vector2( 300, 150 )
+focus_mode = 0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+enabled_focus_mode = 0
+text = "Retry"
+script = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/begin_game = SubResource( 5 )
+anims/game_over = SubResource( 4 )
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/GameOverScreen/PanelContainer/VBoxContainer/ButtonRetry" to="CanvasLayer/UI/VBoxContainer/GameOverScreen/PanelContainer/VBoxContainer/ButtonRetry" method="_on_ButtonRetry_pressed"]

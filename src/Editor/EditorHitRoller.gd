@@ -9,6 +9,7 @@ var beat_number = 1 setget set_beat_number, _get_beat_number
 func _ready():
 	curve = curve.duplicate(false)
 
+
 func get_data():
 	var _data = {
 		"scene" : "hit_roller",
@@ -21,6 +22,7 @@ func get_data():
 		}
 	
 	return _data
+
 
 func _draw():
 	draw_circle(curve.get_point_position(0), 64.0, Colors.BLUE)

@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/VFX/ScoreText.gd" type="Script" id=1]
-[ext_resource path="res://assets/Montserrat-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/FontDefault.tres" type="DynamicFont" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
@@ -57,10 +57,6 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -100 ) ]
 }
 
-[sub_resource type="DynamicFont" id=2]
-size = 64
-font_data = ExtResource( 2 )
-
 [node name="ScoreText" type="Position2D"]
 scale = Vector2( 1e-05, 1e-05 )
 script = ExtResource( 1 )
@@ -81,7 +77,7 @@ margin_top = -100.0
 margin_right = 60.0
 margin_bottom = 100.0
 mouse_filter = 2
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = ExtResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[center][wave amp=50 freq=10]
 10[/wave]"

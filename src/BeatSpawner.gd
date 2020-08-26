@@ -1,6 +1,11 @@
 extends Node
 
+export var enabled = true
 export var pattern_count := 20
+export var beat_delay := 12
+
+onready var patterns = $Patterns
+
 
 var track = []
 var scenes = {
@@ -16,15 +21,23 @@ func _ready():
 
 func _spawn_beat(_msg : Dictionary) -> void:
 	
+	if not enabled:
+		return
+	
 	if not _msg.has("beat_number"):
+		return
+	
+	var _beat_number = _msg["beat_number"]
+	
+	if _beat_number <= beat_delay:
 		return
 	
 	var _beat = track.pop_front()
 	
 	if not _beat:
+		enabled = false
+		Events.emit_signal("track_finished", {})
 		return
-	
-	var _back_beat = _msg["beat_number"] + 4
 	
 	if _beat.has("scene"):
 		var _new_beat = scenes[_beat["scene"]].instance()
@@ -37,7 +50,7 @@ func _create_track():
 	var _pattern_number = 0
 	for i in range(pattern_count):
 		
-		var _pattern = $Patterns.get_child(_pattern_number)
+		var _pattern = patterns.get_child(_pattern_number)
 		var _color = Colors.get_random_color()
 		
 		for _beat in _pattern.get_children():
@@ -45,6 +58,6 @@ func _create_track():
 			_sampled_beat_data["color"] = _color
 			track.append(_sampled_beat_data)
 		
-		_pattern_number = (_pattern_number + 1) % $Patterns.get_children().size()
+		_pattern_number = (_pattern_number + 1) % patterns.get_children().size()
 	
-	$Patterns.free()
+	patterns.free()

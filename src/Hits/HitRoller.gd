@@ -99,7 +99,7 @@ func _complete():
 	moving = false
 	
 	if player_tracking:
-		Events.emit_signal("scored", {"score" : score})
+		Events.emit_signal("scored", {"score" : min(score, 10)})
 	
 	animation_player.play("destroy")
 
