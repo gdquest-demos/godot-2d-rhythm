@@ -1,10 +1,11 @@
 [gd_resource type="Theme" load_steps=6 format=2]
 
-[ext_resource path="res://assets/FontDefault.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/theme/FontDefault.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/theme/panel_container/panel.tres" type="StyleBox" id=2]
 [ext_resource path="res://assets/theme/button/normal.tres" type="StyleBox" id=3]
 [ext_resource path="res://assets/theme/button/hover.tres" type="StyleBox" id=4]
 [ext_resource path="res://assets/theme/button/pressed.tres" type="StyleBox" id=5]
+
 
 
 

@@ -1,17 +1,16 @@
 extends Node2D
 
+var score_text_scene := preload("res://src/VFX/ScoreText.tscn")
 
-var score_text_scene = preload("res://src/VFX/ScoreText.tscn")
 
-
-func _ready():
-	Events.connect("scored", self, "_score")
+func _ready() -> void:
+	Events.connect("scored", self, "_create_score_fx")
 	Events.connect("track_finished", self, "_game_over")
-	
+
 	$AnimationPlayer.play("begin_game")
 
 
-func _score(_msg : Dictionary) -> void:
+func _create_score_fx(_msg: Dictionary) -> void:
 	if _msg.has("score"):
 		var new_score_text = score_text_scene.instance()
 		new_score_text.global_position = get_global_mouse_position()
@@ -19,6 +18,5 @@ func _score(_msg : Dictionary) -> void:
 		add_child(new_score_text)
 
 
-func _game_over(_msg : Dictionary) -> void:
+func _game_over(_msg: Dictionary) -> void:
 	$AnimationPlayer.play("game_over")
-

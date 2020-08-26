@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/FontDefault.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/theme/FontDefault.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/Editor/EditorHitBeat.gd" type="Script" id=2]
+
 
 [node name="EditorHitBeat" type="Position2D"]
 position = Vector2( 160, 160 )

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/FontDefault.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/theme/FontDefault.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/Editor/EditorHitRoller.gd" type="Script" id=2]
 
 [sub_resource type="Curve2D" id=1]
@@ -14,11 +14,11 @@ curve = SubResource( 1 )
 script = ExtResource( 2 )
 
 [node name="LabelFirstBeat" type="Label" parent="."]
-margin_left = 604.722
-margin_top = 202.202
-margin_right = 684.722
-margin_bottom = 282.202
-rect_min_size = Vector2( 80, 80 )
+margin_left = 590.0
+margin_top = 190.0
+margin_right = 690.0
+margin_bottom = 290.0
+rect_min_size = Vector2( 100, 100 )
 custom_fonts/font = ExtResource( 1 )
 text = "1"
 align = 1
@@ -28,11 +28,11 @@ __meta__ = {
 }
 
 [node name="LabelSecondBeat" type="Label" parent="."]
-margin_left = 440.0
-margin_top = 120.0
-margin_right = 520.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 80, 80 )
+margin_left = 430.0
+margin_top = 110.0
+margin_right = 530.0
+margin_bottom = 210.0
+rect_min_size = Vector2( 100, 100 )
 custom_fonts/font = ExtResource( 1 )
 text = "2"
 align = 1
