@@ -1,8 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/VFX/ScoreText.gd" type="Script" id=1]
-[ext_resource path="res://assets/theme/FontDefault.tres" type="DynamicFont" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://RhythmGame/UI/theme/fonts/FontDefault.tres" type="DynamicFont" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://RhythmGame/VFX/ScoreText.gd" type="Script" id=3]
+
 
 
 [sub_resource type="Animation" id=1]
@@ -60,7 +61,7 @@ tracks/3/keys = {
 
 [node name="ScoreText" type="Position2D"]
 scale = Vector2( 1e-05, 1e-05 )
-script = ExtResource( 1 )
+script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "show"
@@ -68,7 +69,7 @@ anims/show = SubResource( 1 )
 
 [node name="icon" type="Sprite" parent="."]
 visible = false
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 
 [node name="Position2D" type="Position2D" parent="."]
 
@@ -78,7 +79,7 @@ margin_top = -100.0
 margin_right = 60.0
 margin_bottom = 100.0
 mouse_filter = 2
-custom_fonts/normal_font = ExtResource( 2 )
+custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[center][wave amp=50 freq=10]
 10[/wave]"

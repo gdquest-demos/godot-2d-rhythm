@@ -1,17 +1,17 @@
 extends Path2D
 
 export var beat_number := 0 setget set_beat_number
-export var show_delay := 0
 export var beat_duration := 2.0
 
 var bps := 60.0 / 124
+var speed := 1.0 / bps / beat_duration
 var player_tracking := false
 var moving := false
 var segments := 10
 var _path_start := Vector2.ZERO
 var _path_end := Vector2.ZERO
 
-var fill_color := Colors.ORANGE
+var fill_color = Colors.WHITE
 
 var score := 1
 
@@ -33,15 +33,13 @@ func _ready() -> void:
 	timer.start(bps * beat_duration / segments)
 
 
-func initialize(_dict: Dictionary) -> void:
-	if _dict.has("beat_number"):
-		self.beat_number = _dict["beat_number"]
+func setup(data: Dictionary) -> void:
+	self.beat_number = data.beat_number
 
-	if _dict.has("beat_duration"):
-		beat_duration = _dict["beat_duration"]
+	beat_duration = data.beat_duration
 
-	if _dict.has("curve"):
-		curve = _dict["curve"]
+	if data.has("curve"):
+		curve = data.curve
 
 	roller_path.offset = 0
 
@@ -50,33 +48,31 @@ func initialize(_dict: Dictionary) -> void:
 	_path_start = roller_line.path_points[0]
 	_path_end = roller_line.path_points[roller_line.path_points.size() - 1]
 
-	if _dict.has("bps"):
-		bps = _dict["bps"]
-		start_beat.bps = _dict["bps"]
+	bps = data.bps
+	speed = 1.0 / bps / beat_duration
 
+	start_beat.setup(data)
 	start_beat.position = _path_start
 
 	label_first.rect_position = _path_start - Vector2.ONE * 50
 	label_second.rect_position = _path_end - Vector2.ONE * 50
 
-	if _dict.has("position"):
-		position = _dict["position"]
+	position = data.position
 
-	if _dict.has("color"):
-		set_color(_dict["color"])
+	set_color(data.color)
 
 
-func set_beat_number(_no: int) -> void:
-	start_beat.set_beat_number(_no)
-	label_first.text = str(_no)
-	beat_number = _no
-	label_second.text = str(_no + 1)
+func set_beat_number(number: int) -> void:
+	start_beat.set_beat_number(number)
+	label_first.text = str(number)
+	beat_number = number
+	label_second.text = str(number + 1)
 
 
 func set_color(color: Color) -> void:
 	fill_color = color
 	roller.fill_color = color
-	start_beat.set_color(color)
+	start_beat.fill_color = color
 	roller_line.default_color = color
 
 
@@ -88,15 +84,11 @@ func _draw() -> void:
 	draw_arc(_path_end, 64.0, 0.0, 2 * PI, 100, Colors.WHITE, 6.0, true)
 
 
-func get_speed() -> float:
-	return 1.0 / bps / beat_duration
-
-
 func _process(delta: float) -> void:
 	if not moving:
 		return
 
-	roller_path.unit_offset += delta * get_speed()
+	roller_path.unit_offset += delta * speed
 
 	if roller_path.unit_offset >= 1:
 		_complete()
@@ -111,7 +103,7 @@ func _complete() -> void:
 	animation_player.play("destroy")
 
 
-func _on_Area2D_input_event(viewport, event, shape_idx) -> void:
+func _on_Area2D_input_event(_viewport, event, _shape_idx) -> void:
 	if event.is_action_pressed("touch"):
 		player_tracking = true
 

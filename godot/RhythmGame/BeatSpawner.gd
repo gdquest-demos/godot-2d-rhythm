@@ -7,8 +7,8 @@ export var beat_delay := 12
 var track = []
 
 var scenes = {
-	"hit_beat": preload("res://src/Hits/HitBeat.tscn"),
-	"hit_roller": preload("res://src/Hits/HitRoller.tscn")
+	"hit_beat": preload("res://RhythmGame/Hits/HitBeat.tscn"),
+	"hit_roller": preload("res://RhythmGame/Hits/HitRoller.tscn")
 }
 
 onready var patterns = $Patterns
@@ -20,16 +20,11 @@ func _ready() -> void:
 	_create_track()
 
 
-func _spawn_beat(_msg: Dictionary) -> void:
+func _spawn_beat(msg: Dictionary) -> void:
 	if not enabled:
 		return
 
-	if not _msg.has("beat_number"):
-		return
-
-	var _beat_number = _msg["beat_number"]
-
-	if _beat_number <= beat_delay:
+	if msg.beat_number <= beat_delay:
 		return
 
 	var _beat = track.pop_front()
@@ -39,13 +34,14 @@ func _spawn_beat(_msg: Dictionary) -> void:
 		Events.emit_signal("track_finished", {})
 		return
 
-	if _msg.has("bps"):
-		_beat["bps"] = _msg["bps"]
+	if not _beat.has("scene"):
+		return
 
-	if _beat.has("scene"):
-		var _new_beat = scenes[_beat["scene"]].instance()
-		add_child(_new_beat)
-		_new_beat.initialize(_beat)
+	_beat.bps = msg.bps
+
+	var _new_beat = scenes[_beat.scene].instance()
+	add_child(_new_beat)
+	_new_beat.setup(_beat)
 
 
 func _create_track() -> void:
