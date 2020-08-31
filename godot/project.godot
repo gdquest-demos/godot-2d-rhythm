@@ -8,9 +8,14 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Reference",
+"class": "Colors",
+"language": "GDScript",
+"path": "res://RhythmGame/VFX/Colors.gd"
+} ]
 _global_script_class_icons={
-
+"Colors": ""
 }
 
 [application]
@@ -22,7 +27,6 @@ config/icon="res://icon.png"
 [autoload]
 
 Events="*res://RhythmGame/Autoload/Events.gd"
-Colors="*res://RhythmGame/Autoload/Colors.gd"
 
 [display]
 

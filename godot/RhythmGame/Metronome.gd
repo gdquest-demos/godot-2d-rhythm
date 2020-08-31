@@ -1,5 +1,9 @@
 extends Sprite
 
+
+var start := Vector2.ONE
+var end := Vector2.ONE * 2
+
 onready var tween := $Tween
 
 
@@ -8,13 +12,13 @@ func _ready():
 
 
 func _pulse(msg: Dictionary):
-	var _beats_per_second = msg.bps
+	var _beats_per_second: float = msg.bps
 
 	tween.interpolate_property(
 		self,
 		"scale",
-		Vector2.ONE,
-		Vector2.ONE * 2,
+		start,
+		end,
 		_beats_per_second / 32,
 		Tween.TRANS_LINEAR,
 		Tween.EASE_OUT
@@ -22,8 +26,8 @@ func _pulse(msg: Dictionary):
 	tween.interpolate_property(
 		self,
 		"scale",
-		Vector2.ONE * 2,
-		Vector2.ONE,
+		end,
+		start,
 		_beats_per_second / 4,
 		Tween.TRANS_LINEAR,
 		Tween.EASE_OUT,

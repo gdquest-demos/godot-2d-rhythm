@@ -49,7 +49,6 @@ position = Vector2( 640, 160 )
 [node name="EditorHitRoller" parent="0" instance=ExtResource( 2 )]
 position = Vector2( 160, -80 )
 curve = SubResource( 1 )
-beat_duration = 2
 
 [node name="EditorHitRest" type="Node" parent="0"]
 script = ExtResource( 3 )

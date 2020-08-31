@@ -9,7 +9,9 @@ func _draw() -> void:
 
 
 func get_data() -> Dictionary:
-	return {scene = "hit_beat", beat_number = beat_number, global_position = global_position}
+	return {
+		scene = "hit_beat", beat_number = beat_number, global_position = global_position
+	}
 
 
 func _on_EditorHitBeat_tree_entered() -> void:
