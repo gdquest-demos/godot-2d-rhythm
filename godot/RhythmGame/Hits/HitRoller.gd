@@ -3,8 +3,8 @@ extends Path2D
 export var beat_number := 0 setget set_beat_number
 export var beat_duration := 2.0
 
-var bps := 60.0 / 124
-var speed := 1.0 / bps / beat_duration
+var bps := 0.0
+var speed := 0.0
 var player_tracking := false
 var moving := false
 var segments := 10
@@ -31,6 +31,24 @@ func _ready() -> void:
 	yield(start_beat, "beat_aligned")
 	moving = true
 	timer.start(bps * beat_duration / segments)
+
+
+func _draw() -> void:
+	draw_circle(_path_start, 64.0, fill_color)
+	draw_arc(_path_start, 64.0, 0.0, 2 * PI, 100, Colors.WHITE, 6.0, true)
+
+	draw_circle(_path_end, 64.0, fill_color)
+	draw_arc(_path_end, 64.0, 0.0, 2 * PI, 100, Colors.WHITE, 6.0, true)
+
+
+func _process(delta: float) -> void:
+	if not moving:
+		return
+
+	roller_path.unit_offset += delta * speed
+
+	if roller_path.unit_offset >= 1:
+		_complete()
 
 
 func setup(data: Dictionary) -> void:
@@ -74,24 +92,6 @@ func set_color(color: Color) -> void:
 	roller.fill_color = color
 	start_beat.fill_color = color
 	roller_line.default_color = color
-
-
-func _draw() -> void:
-	draw_circle(_path_start, 64.0, fill_color)
-	draw_arc(_path_start, 64.0, 0.0, 2 * PI, 100, Colors.WHITE, 6.0, true)
-
-	draw_circle(_path_end, 64.0, fill_color)
-	draw_arc(_path_end, 64.0, 0.0, 2 * PI, 100, Colors.WHITE, 6.0, true)
-
-
-func _process(delta: float) -> void:
-	if not moving:
-		return
-
-	roller_path.unit_offset += delta * speed
-
-	if roller_path.unit_offset >= 1:
-		_complete()
 
 
 func _complete() -> void:

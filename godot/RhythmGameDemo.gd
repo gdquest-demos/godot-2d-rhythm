@@ -1,6 +1,7 @@
 extends Node2D
 
-var score_text_scene := preload("res://RhythmGame/VFX/ScoreText.tscn")
+
+export var score_text_scene: PackedScene
 
 onready var animation_player := $AnimationPlayer
 
@@ -13,8 +14,10 @@ func _ready() -> void:
 
 
 func _create_score_fx(msg: Dictionary) -> void:
-	var new_score_text = score_text_scene.instance()
+	var new_score_text := score_text_scene.instance()
+
 	new_score_text.global_position = get_global_mouse_position()
+
 	add_child(new_score_text)
 	new_score_text.set_score(msg.score)
 

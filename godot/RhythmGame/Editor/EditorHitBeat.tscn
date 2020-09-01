@@ -3,10 +3,6 @@
 [ext_resource path="res://RhythmGame/UI/theme/fonts/FontDefault.tres" type="DynamicFont" id=1]
 [ext_resource path="res://RhythmGame/Editor/EditorHitBeat.gd" type="Script" id=2]
 
-
-
-
-
 [node name="EditorHitBeat" type="Position2D"]
 position = Vector2( 160, 160 )
 script = ExtResource( 2 )

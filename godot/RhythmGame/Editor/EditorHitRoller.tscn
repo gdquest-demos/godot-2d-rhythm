@@ -3,9 +3,6 @@
 [ext_resource path="res://RhythmGame/UI/theme/fonts/FontDefault.tres" type="DynamicFont" id=1]
 [ext_resource path="res://RhythmGame/Editor/EditorHitRoller.gd" type="Script" id=2]
 
-
-
-
 [sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 640, 240, 59.4905, 51.6333, -59.4905, -51.6333, 400, 320, 0, 0, 0, 0, 480, 160 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://RhythmGameDemo.gd" type="Script" id=1]
 [ext_resource path="res://RhythmGame/BeatSpawner.gd" type="Script" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://RhythmGame/UI/UI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://RhythmGame/BeatSynchronizer.gd" type="Script" id=7]
 [ext_resource path="res://RhythmGame/Metronome.gd" type="Script" id=8]
+[ext_resource path="res://RhythmGame/VFX/ScoreText.tscn" type="PackedScene" id=9]
+[ext_resource path="res://RhythmGame/Hits/HitRoller.tscn" type="PackedScene" id=10]
+[ext_resource path="res://RhythmGame/Hits/HitBeat.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "begin_game"
@@ -99,6 +102,7 @@ glow_bicubic_upscale = true
 
 [node name="RhythmGameDemo" type="Node2D"]
 script = ExtResource( 1 )
+score_text_scene = ExtResource( 9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/begin_game = SubResource( 1 )
@@ -118,11 +122,11 @@ script = ExtResource( 8 )
 
 [node name="Tween" type="Tween" parent="BeatSynchronizer/Metronome"]
 
-[node name="Timer" type="Timer" parent="BeatSynchronizer"]
-
 [node name="BeatSpawner" type="Node" parent="."]
 script = ExtResource( 2 )
 pattern_count = 9
+hit_beat = ExtResource( 11 )
+hit_roller = ExtResource( 10 )
 
 [node name="Patterns" parent="BeatSpawner" instance=ExtResource( 5 )]
 visible = false
