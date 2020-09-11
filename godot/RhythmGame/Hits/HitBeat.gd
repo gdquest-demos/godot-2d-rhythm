@@ -1,10 +1,8 @@
 extends Node2D
 
-signal beat_aligned
-
 export var beat_number := 0 setget set_beat_number
 
-var beat_aligned := false
+var beat_hit := false
 var bps := 60.0 / 124.0
 var beat_delay := 4.0  #beats before perfect
 var speed := 1.0 / bps / beat_delay
@@ -24,6 +22,7 @@ var score := 0
 
 onready var animation_player := $AnimationPlayer
 onready var touch_area := $Area2D
+onready var target_circle := $TargetCircle
 
 
 func _ready() -> void:
@@ -39,6 +38,12 @@ func setup(data: Dictionary) -> void:
 	global_position = data.global_position
 
 	fill_color = data.color
+	
+	target_circle.radius = radius_start
+	target_circle.shrink_speed = (radius_start - radius_perfect) * speed
+	target_circle.end_radius = radius_perfect
+	target_circle.fill_color = fill_color
+	target_circle.global_position = global_position
 
 
 func set_beat_number(_no: int) -> void:
@@ -49,17 +54,20 @@ func set_beat_number(_no: int) -> void:
 func _draw() -> void:
 	draw_circle(Vector2.ZERO, radius_perfect, fill_color)
 	draw_arc(Vector2.ZERO, radius_perfect, 0.0, 2 * PI, 100, Colors.WHITE, 6.0, true)
-	draw_arc(Vector2.ZERO, radius, 0.0, 2 * PI, 100, fill_color, 6.0, true)
 
 
 func _process(delta: float) -> void:
 	radius -= delta * (radius_start - radius_perfect) * speed
 	update()
 
-	if not beat_aligned and radius <= radius_perfect:
-		emit_signal("beat_aligned", {})
-		animation_player.play("destroy")
-		beat_aligned = true
+	if radius <= radius_perfect - offset_perfect:
+		
+		touch_area.collision_layer = 0
+		
+		if not beat_hit:
+			animation_player.play("destroy")
+			Events.emit_signal("scored", {"score": 0, "position": global_position})
+			beat_hit = true
 
 
 func _get_score() -> int:
@@ -74,5 +82,7 @@ func _get_score() -> int:
 
 func _on_Area2D_input_event(_viewport, event, _shape_idx) -> void:
 	if event.is_action_pressed("touch"):
-		Events.emit_signal("scored", {"score": _get_score()})
+		Events.emit_signal("scored", {"score": _get_score(), "position": global_position})
+		beat_hit = true
 		touch_area.collision_layer = 0
+		animation_player.play("hide")

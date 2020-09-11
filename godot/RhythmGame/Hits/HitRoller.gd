@@ -20,15 +20,16 @@ onready var roller := $RollerPath/Roller
 onready var roller_line := $RollerLine2D
 onready var label_first := $LabelFirstBeat
 onready var label_second := $LabelSecondBeat
-onready var start_beat := $Beat
 onready var animation_player := $AnimationPlayer
+onready var start_timer := $StartTimer
 onready var timer := $Timer
+onready var target_circle := $TargetCircle
 
 
 func _ready() -> void:
 	animation_player.play("show")
-
-	yield(start_beat, "beat_aligned")
+	
+	yield(start_timer, "timeout")
 	moving = true
 	timer.start(bps * beat_duration / segments)
 
@@ -69,19 +70,23 @@ func setup(data: Dictionary) -> void:
 	bps = data.bps
 	speed = 1.0 / bps / beat_duration
 
-	start_beat.setup(data)
-	start_beat.position = _path_start
-
 	label_first.rect_position = _path_start - Vector2.ONE * 50
 	label_second.rect_position = _path_end - Vector2.ONE * 50
 
 	position = data.position
 
 	set_color(data.color)
+	
+	start_timer.start(bps * 4.0)
+	
+	target_circle.radius = 128.0
+	target_circle.shrink_speed = bps * 64.0
+	target_circle.end_radius = 64.0
+	target_circle.fill_color = fill_color
+	target_circle.global_position = to_global(_path_start)
 
 
 func set_beat_number(number: int) -> void:
-	start_beat.set_beat_number(number)
 	label_first.text = str(number)
 	beat_number = number
 	label_second.text = str(number + 1)
@@ -90,15 +95,13 @@ func set_beat_number(number: int) -> void:
 func set_color(color: Color) -> void:
 	fill_color = color
 	roller.fill_color = color
-	start_beat.fill_color = color
 	roller_line.default_color = color
 
 
 func _complete() -> void:
 	moving = false
 
-	if player_tracking:
-		Events.emit_signal("scored", {"score": min(score, 10)})
+	Events.emit_signal("scored", {"score": min(score, 10), "position": to_global(_path_end)})
 
 	animation_player.play("destroy")
 

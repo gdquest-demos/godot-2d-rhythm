@@ -1,10 +1,8 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://RhythmGame/Hits/HitRoller.gd" type="Script" id=1]
-[ext_resource path="res://RhythmGame/Hits/HitBeat.tscn" type="PackedScene" id=2]
+[ext_resource path="res://RhythmGame/Hits/TargetCircle.tscn" type="PackedScene" id=2]
 [ext_resource path="res://RhythmGame/UI/theme/fonts/FontDefault.tres" type="DynamicFont" id=3]
-
-
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -67,7 +65,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
+"times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -79,10 +77,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.2, 0.5 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1.1, 1.1, 1.1, 1 ), Color( 1.10196, 1.10196, 1.10196, 0 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1.10196, 1.10196, 1.10196, 0 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("RollerLine2D:width")
@@ -108,7 +106,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1.10196, 1.10196, 1.10196, 0 ), Color( 1.1, 1.1, 1.1, 1 ) ]
+"values": [ Color( 1.10196, 1.10196, 1.10196, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("RollerLine2D:width")
@@ -153,9 +151,6 @@ script = SubResource( 4 )
 wait_time = 0.01
 autostart = true
 
-[node name="Beat" parent="." instance=ExtResource( 2 )]
-modulate = Color( 1, 1, 1, 1 )
-
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
@@ -188,6 +183,11 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="StartTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="TargetCircle" parent="." instance=ExtResource( 2 )]
 [connection signal="input_event" from="RollerPath/Roller" to="." method="_on_Area2D_input_event"]
 [connection signal="mouse_entered" from="RollerPath/Roller" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="RollerPath/Roller" to="." method="_on_Area2D_mouse_exited"]

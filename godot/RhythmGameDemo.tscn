@@ -8,7 +8,7 @@
 [ext_resource path="res://RhythmGame/UI/UI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://RhythmGame/BeatSynchronizer.gd" type="Script" id=7]
 [ext_resource path="res://RhythmGame/Metronome.gd" type="Script" id=8]
-[ext_resource path="res://RhythmGame/VFX/ScoreText.tscn" type="PackedScene" id=9]
+[ext_resource path="res://RhythmGame/VFX/VFXScore.tscn" type="PackedScene" id=9]
 [ext_resource path="res://RhythmGame/Hits/HitRoller.tscn" type="PackedScene" id=10]
 [ext_resource path="res://RhythmGame/Hits/HitBeat.tscn" type="PackedScene" id=11]
 
@@ -96,7 +96,7 @@ tracks/2/keys = {
 
 [sub_resource type="Environment" id=3]
 background_mode = 4
-glow_intensity = 0.4
+glow_enabled = true
 glow_blend_mode = 0
 glow_bicubic_upscale = true
 
@@ -113,6 +113,7 @@ script = ExtResource( 7 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BeatSynchronizer"]
 stream = ExtResource( 4 )
+volume_db = -16.0
 
 [node name="Metronome" type="Sprite" parent="BeatSynchronizer"]
 modulate = Color( 1, 1, 1, 0 )
@@ -124,7 +125,7 @@ script = ExtResource( 8 )
 
 [node name="BeatSpawner" type="Node" parent="."]
 script = ExtResource( 2 )
-pattern_count = 9
+pattern_count = 48
 hit_beat = ExtResource( 11 )
 hit_roller = ExtResource( 10 )
 
