@@ -2,13 +2,14 @@ extends Node
 
 
 export var enabled := true
-export var pattern_count := 20
-export var beat_delay := 12
 
 export var hit_beat: PackedScene
 export var hit_roller: PackedScene
 
-var track = []
+var tracks = {}
+var track_current = []
+var delay_start := 0
+
 
 onready var scenes = {
 	"hit_beat": hit_beat,
@@ -20,19 +21,20 @@ onready var patterns = $Patterns
 
 func _ready() -> void:
 	Events.connect("beat_incremented", self, "_spawn_beat")
-	_create_track()
+	Events.connect("track_selected", self, "_select_track")
+	_load_tracks()
 
 
 func _spawn_beat(msg: Dictionary) -> void:
-	if not enabled or msg.beat_number <= beat_delay:
+	if not enabled or msg.beat_number <= delay_start:
 		return
 
-	if track.empty():
+	if track_current.empty():
 		enabled = false
 		Events.emit_signal("track_finished", {})
 		return
 		
-	var _beat: Dictionary = track.pop_front()
+	var _beat: Dictionary = track_current.pop_front()
 
 	if not _beat.has("scene"):
 		return
@@ -45,16 +47,23 @@ func _spawn_beat(msg: Dictionary) -> void:
 	_new_beat.setup(_beat)
 
 
-func _create_track() -> void:
-	var _pattern_number: int = patterns.get_children().size()
-
-	for i in range(pattern_count):
-		var _pattern: Node = patterns.get_child(i % _pattern_number)
-		var _color := Colors.get_random_color()
-
-		for _beat in _pattern.get_children():
-			var _beat_data: Dictionary = _beat.get_data()
-			_beat_data.color = _color
-			track.append(_beat_data)
-
+func _load_tracks() -> void:
+	for _track in patterns.get_children():
+		tracks[_track.name] = {
+			"delay_start" : _track.delay_start,
+			"beats" : []
+			}
+		
+		for _bar in _track.get_children():
+			var _color := Colors.get_random_color()
+			for _beat in _bar.get_children():
+				var _beat_data: Dictionary = _beat.get_data()
+				_beat_data.color = _color
+				tracks[_track.name]["beats"].append(_beat_data)
+	
 	patterns.queue_free()
+
+
+func _select_track(msg: Dictionary) -> void:
+	track_current = tracks[msg.name].beats
+	delay_start = tracks[msg.name].delay_start

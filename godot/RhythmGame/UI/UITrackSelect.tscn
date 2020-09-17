@@ -1,0 +1,113 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://RhythmGame/UI/UITrackSelect.gd" type="Script" id=1]
+[ext_resource path="res://RhythmGame/UI/track_next.png" type="Texture" id=2]
+[ext_resource path="res://RhythmGame/Tracks/Icons/icon_cephalopod.png" type="Texture" id=3]
+[ext_resource path="res://RhythmGame/UI/theme/theme.tres" type="Theme" id=4]
+[ext_resource path="res://RhythmGame/UI/track_previous.png" type="Texture" id=5]
+[ext_resource path="res://RhythmGame/Tracks/cephalopod.tres" type="Resource" id=6]
+[ext_resource path="res://RhythmGame/Tracks/disco_lounge.tres" type="Resource" id=7]
+[ext_resource path="res://RhythmGame/Tracks/werq.tres" type="Resource" id=8]
+
+[node name="UITrackSelect" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+tracks = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1260.0
+margin_bottom = 700.0
+
+[node name="HSplitContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 1240.0
+margin_bottom = 400.0
+
+[node name="BPM" type="Label" parent="VBoxContainer/HSplitContainer"]
+margin_top = 160.0
+margin_right = 410.0
+margin_bottom = 239.0
+size_flags_horizontal = 3
+text = "100 bpm"
+align = 1
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/HSplitContainer"]
+margin_left = 414.0
+margin_right = 824.0
+margin_bottom = 400.0
+size_flags_horizontal = 3
+texture = ExtResource( 3 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Artist" type="Label" parent="VBoxContainer/HSplitContainer"]
+margin_left = 828.0
+margin_top = 160.0
+margin_right = 1240.0
+margin_bottom = 239.0
+size_flags_horizontal = 3
+text = "Artist"
+align = 1
+autowrap = true
+
+[node name="Name" type="Label" parent="VBoxContainer"]
+margin_top = 404.0
+margin_right = 1240.0
+margin_bottom = 483.0
+text = "Track Name"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TrackSelection" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 487.0
+margin_right = 1240.0
+margin_bottom = 680.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonPrevious" type="TextureButton" parent="VBoxContainer/TrackSelection"]
+margin_left = 83.0
+margin_top = 16.0
+margin_right = 307.0
+margin_bottom = 176.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture_normal = ExtResource( 5 )
+
+[node name="ButtonPlay" type="Button" parent="VBoxContainer/TrackSelection"]
+margin_left = 395.0
+margin_right = 845.0
+margin_bottom = 193.0
+rect_min_size = Vector2( 450, 0 )
+focus_mode = 0
+size_flags_horizontal = 3
+enabled_focus_mode = 0
+text = "Play"
+
+[node name="ButtonNext" type="TextureButton" parent="VBoxContainer/TrackSelection"]
+margin_left = 932.0
+margin_top = 16.0
+margin_right = 1156.0
+margin_bottom = 176.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture_normal = ExtResource( 2 )
+[connection signal="pressed" from="VBoxContainer/TrackSelection/ButtonPrevious" to="." method="_on_ButtonPrevious_pressed"]
+[connection signal="pressed" from="VBoxContainer/TrackSelection/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
+[connection signal="pressed" from="VBoxContainer/TrackSelection/ButtonNext" to="." method="_on_ButtonNext_pressed"]

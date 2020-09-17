@@ -38,16 +38,14 @@ func setup(data: Dictionary) -> void:
 	global_position = data.global_position
 
 	fill_color = data.color
-	
-	target_circle.radius = radius_start
-	target_circle.shrink_speed = (radius_start - radius_perfect) * speed
-	target_circle.end_radius = radius_perfect
+
+	target_circle.set_up(radius_start, radius_perfect, bps, beat_delay)
 	target_circle.fill_color = fill_color
 	target_circle.global_position = global_position
 
 
-func set_beat_number(_no: int) -> void:
-	beat_number = _no
+func set_beat_number(number: int) -> void:
+	beat_number = number
 	$Label.text = str(beat_number)
 
 
@@ -61,9 +59,8 @@ func _process(delta: float) -> void:
 	update()
 
 	if radius <= radius_perfect - offset_perfect:
-		
 		touch_area.collision_layer = 0
-		
+
 		if not beat_hit:
 			animation_player.play("destroy")
 			Events.emit_signal("scored", {"score": 0, "position": global_position})

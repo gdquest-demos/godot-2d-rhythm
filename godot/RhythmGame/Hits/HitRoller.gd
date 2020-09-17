@@ -4,6 +4,7 @@ export var beat_number := 0 setget set_beat_number
 export var beat_duration := 2.0
 
 var bps := 0.0
+var beat_delay := 4.0  #beats before roller start
 var speed := 0.0
 var player_tracking := false
 var moving := false
@@ -28,7 +29,7 @@ onready var target_circle := $TargetCircle
 
 func _ready() -> void:
 	animation_player.play("show")
-	
+
 	yield(start_timer, "timeout")
 	moving = true
 	timer.start(bps * beat_duration / segments)
@@ -76,12 +77,10 @@ func setup(data: Dictionary) -> void:
 	position = data.position
 
 	set_color(data.color)
-	
-	start_timer.start(bps * 4.0)
-	
-	target_circle.radius = 128.0
-	target_circle.shrink_speed = bps * 64.0
-	target_circle.end_radius = 64.0
+
+	start_timer.start(bps * beat_delay)
+
+	target_circle.set_up(128.0, 64.0, bps, beat_delay)
 	target_circle.fill_color = fill_color
 	target_circle.global_position = to_global(_path_start)
 

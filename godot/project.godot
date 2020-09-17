@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Colors",
 "language": "GDScript",
 "path": "res://RhythmGame/VFX/Colors.gd"
+}, {
+"base": "Resource",
+"class": "TrackData",
+"language": "GDScript",
+"path": "res://RhythmGame/Tracks/TrackData.gd"
 } ]
 _global_script_class_icons={
-"Colors": ""
+"Colors": "",
+"TrackData": ""
 }
 
 [application]
