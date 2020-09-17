@@ -7,6 +7,18 @@ export (int, 1, 3) var beat_duration := 2
 var beat_number := 1
 
 
+func _enter_tree() -> void:
+	beat_number = get_index() + 1
+
+	$LabelFirstBeat.text = str(beat_number)
+	$LabelSecondBeat.text = str(beat_number + 1)
+
+	$LabelSecondBeat.rect_position = (
+		curve.get_point_position(curve.get_point_count() - 1)
+		- Vector2.ONE * 50
+	)
+
+
 func _ready() -> void:
 	curve = curve.duplicate(false)
 
@@ -25,15 +37,3 @@ func get_data() -> Dictionary:
 func _draw() -> void:
 	draw_circle(curve.get_point_position(0), 64.0, Colors.BLACK)
 	draw_circle(curve.get_point_position(curve.get_point_count() - 1), 64.0, Colors.BLACK)
-
-
-func _on_EditorHitRoller_tree_entered() -> void:
-	beat_number = get_index() + 1
-
-	$LabelFirstBeat.text = str(beat_number)
-	$LabelSecondBeat.text = str(beat_number + 1)
-
-	$LabelSecondBeat.rect_position = (
-		curve.get_point_position(curve.get_point_count() - 1)
-		- Vector2.ONE * 50
-	)

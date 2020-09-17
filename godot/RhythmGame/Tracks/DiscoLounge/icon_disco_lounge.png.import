@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon_werq.png-37c863dc9d335ab9c2577027bad41fb3.stex"
+path="res://.import/icon_disco_lounge.png-6ac028c18e41491c4ce222f0b1c257c8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RhythmGame/Tracks/Icons/icon_werq.png"
-dest_files=[ "res://.import/icon_werq.png-37c863dc9d335ab9c2577027bad41fb3.stex" ]
+source_file="res://RhythmGame/Tracks/DiscoLounge/icon_disco_lounge.png"
+dest_files=[ "res://.import/icon_disco_lounge.png-6ac028c18e41491c4ce222f0b1c257c8.stex" ]
 
 [params]
 

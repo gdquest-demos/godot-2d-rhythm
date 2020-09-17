@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Cephalopod.ogg-4d0713581dc005f811eac1236cd99cf6.oggstr"
+
+[deps]
+
+source_file="res://RhythmGame/Tracks/Cephalopod/Cephalopod.ogg"
+dest_files=[ "res://.import/Cephalopod.ogg-4d0713581dc005f811eac1236cd99cf6.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

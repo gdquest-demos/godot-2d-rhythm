@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Werq.ogg-c2c934cce2ab32dbd97be6aa78114c54.oggstr"
+
+[deps]
+
+source_file="res://RhythmGame/Tracks/Werq/Werq.ogg"
+dest_files=[ "res://.import/Werq.ogg-c2c934cce2ab32dbd97be6aa78114c54.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

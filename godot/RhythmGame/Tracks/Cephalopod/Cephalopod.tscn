@@ -1,0 +1,151 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://RhythmGame/Editor/EditorHitRest.gd" type="Script" id=2]
+[ext_resource path="res://RhythmGame/Editor/EditorHitRoller.tscn" type="PackedScene" id=4]
+[ext_resource path="res://RhythmGame/Editor/EditorHitBeat.tscn" type="PackedScene" id=5]
+[ext_resource path="res://RhythmGame/Editor/TrackInformation.gd" type="Script" id=6]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 640, 240, -195.133, -1.05861, 195.133, 1.05861, 800, 400, 0, 0, 0, 0, 960, 560 )
+}
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 640, 240, 0, 0, 0, 0, 240, 240 )
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 640, 240, 0, 0, 0, 0, 1040, 240 )
+}
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 640, 240, 145.475, 0, -145.475, 0, 480, 320, 0, 0, 0, 0, 320, 240 )
+}
+
+[node name="Cephalopod" type="Node2D"]
+script = ExtResource( 6 )
+delay_start = 3
+
+[node name="0" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="EditorHitBeat" parent="0" instance=ExtResource( 5 )]
+position = Vector2( 160, 560 )
+
+[node name="EditorHitRest" type="Node" parent="0"]
+script = ExtResource( 2 )
+
+[node name="EditorHitRest2" type="Node" parent="0"]
+script = ExtResource( 2 )
+
+[node name="EditorHitRest3" type="Node" parent="0"]
+script = ExtResource( 2 )
+
+[node name="EditorHitBeat2" parent="0" instance=ExtResource( 5 )]
+position = Vector2( 160, 320 )
+
+[node name="EditorHitRest4" type="Node" parent="0"]
+script = ExtResource( 2 )
+
+[node name="EditorHitRest5" type="Node" parent="0"]
+script = ExtResource( 2 )
+
+[node name="EditorHitRest6" type="Node" parent="0"]
+script = ExtResource( 2 )
+
+[node name="1" type="Node2D" parent="."]
+visible = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="EditorHitBeat" parent="1" instance=ExtResource( 5 )]
+
+[node name="EditorHitBeat2" parent="1" instance=ExtResource( 5 )]
+position = Vector2( 320, 160 )
+
+[node name="EditorHitBeat3" parent="1" instance=ExtResource( 5 )]
+position = Vector2( 480, 160 )
+
+[node name="EditorHitBeat4" parent="1" instance=ExtResource( 5 )]
+position = Vector2( 640, 160 )
+
+[node name="EditorHitRoller" parent="1" instance=ExtResource( 4 )]
+position = Vector2( 160, -80 )
+curve = SubResource( 1 )
+
+[node name="EditorHitRest" type="Node" parent="1"]
+script = ExtResource( 2 )
+
+[node name="EditorHitRest2" type="Node" parent="1"]
+script = ExtResource( 2 )
+
+[node name="EditorHitRest3" type="Node" parent="1"]
+script = ExtResource( 2 )
+
+[node name="2" type="Node2D" parent="."]
+visible = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="EditorHitBeat" parent="2" instance=ExtResource( 5 )]
+position = Vector2( 1120, 640 )
+
+[node name="EditorHitRoller" parent="2" instance=ExtResource( 4 )]
+position = Vector2( 320, 400 )
+curve = SubResource( 2 )
+beat_duration = 1
+
+[node name="EditorHitRest" type="Node" parent="2"]
+script = ExtResource( 2 )
+
+[node name="EditorHitRoller2" parent="2" instance=ExtResource( 4 )]
+position = Vector2( -80, 240 )
+curve = SubResource( 3 )
+beat_duration = 1
+
+[node name="EditorHitRest2" type="Node" parent="2"]
+script = ExtResource( 2 )
+
+[node name="EditorHitBeat2" parent="2" instance=ExtResource( 5 )]
+position = Vector2( 1120, 480 )
+
+[node name="EditorHitBeat3" parent="2" instance=ExtResource( 5 )]
+position = Vector2( 1120, 320 )
+
+[node name="EditorHitRest3" type="Node" parent="2"]
+script = ExtResource( 2 )
+
+[node name="3" type="Node2D" parent="."]
+visible = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="EditorHitRoller" parent="3" instance=ExtResource( 4 )]
+position = Vector2( 320, 80 )
+curve = SubResource( 4 )
+
+[node name="EditorHitRest" type="Node" parent="3"]
+script = ExtResource( 2 )
+
+[node name="EditorHitRest4" type="Node" parent="3"]
+script = ExtResource( 2 )
+
+[node name="EditorHitBeat" parent="3" instance=ExtResource( 5 )]
+position = Vector2( 480, 320 )
+
+[node name="EditorHitBeat2" parent="3" instance=ExtResource( 5 )]
+position = Vector2( 320, 400 )
+
+[node name="EditorHitBeat3" parent="3" instance=ExtResource( 5 )]
+position = Vector2( 160, 480 )
+
+[node name="EditorHitBeat5" parent="3" instance=ExtResource( 5 )]
+position = Vector2( 160, 320 )
