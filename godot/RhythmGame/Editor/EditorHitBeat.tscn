@@ -19,4 +19,3 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="tree_entered" from="." to="." method="_on_EditorHitBeat_tree_entered"]

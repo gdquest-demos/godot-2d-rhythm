@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon_cephalopod.png-e81c4b116eff49cf8cc3cc80ecc87b8f.stex"
+path="res://.import/icon_cephalopod.png-d58be98c7f77515edd254c8b9024e96b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RhythmGame/Tracks/Icons/icon_cephalopod.png"
-dest_files=[ "res://.import/icon_cephalopod.png-e81c4b116eff49cf8cc3cc80ecc87b8f.stex" ]
+source_file="res://RhythmGame/Tracks/Cephalopod/icon_cephalopod.png"
+dest_files=[ "res://.import/icon_cephalopod.png-d58be98c7f77515edd254c8b9024e96b.stex" ]
 
 [params]
 
