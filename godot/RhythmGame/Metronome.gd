@@ -1,6 +1,5 @@
 extends Sprite
 
-
 var start := Vector2.ONE
 var end := Vector2.ONE * 2
 
@@ -12,15 +11,18 @@ func _ready():
 
 
 func _pulse(msg: Dictionary):
+	if msg.beat_number % 2 == 1:
+		return
+
 	var _beats_per_second: float = msg.bps
 
 	tween.interpolate_property(
-		self,
-		"scale",
-		start,
-		end,
-		_beats_per_second / 32,
-		Tween.TRANS_LINEAR,
+		self, 
+		"scale", 
+		start, 
+		end, 
+		_beats_per_second / 32, 
+		Tween.TRANS_LINEAR, 
 		Tween.EASE_OUT
 	)
 	tween.interpolate_property(

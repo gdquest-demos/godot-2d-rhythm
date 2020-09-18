@@ -1,6 +1,5 @@
 class_name Colors
 
-
 const LIST := [
 	Color("#e36956"), #orange
 	Color("#3ca370"), #green

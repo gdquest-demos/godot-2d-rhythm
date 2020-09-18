@@ -1,8 +1,7 @@
 tool
 extends Path2D
 
-
-export (int, 1, 3) var beat_duration := 2
+export (int, 1, 4) var beat_duration := 4 setget set_beat_duration
 
 var beat_number := 1
 
@@ -10,13 +9,9 @@ var beat_number := 1
 func _enter_tree() -> void:
 	beat_number = get_index() + 1
 
-	$LabelFirstBeat.text = str(beat_number)
-	$LabelSecondBeat.text = str(beat_number + 1)
+	$BeatNumber.text = str(beat_number)
 
-	$LabelSecondBeat.rect_position = (
-		curve.get_point_position(curve.get_point_count() - 1)
-		- Vector2.ONE * 50
-	)
+	$Sprite.global_position = to_global(curve.get_point_position(0))
 
 
 func _ready() -> void:
@@ -37,3 +32,8 @@ func get_data() -> Dictionary:
 func _draw() -> void:
 	draw_circle(curve.get_point_position(0), 64.0, Colors.BLACK)
 	draw_circle(curve.get_point_position(curve.get_point_count() - 1), 64.0, Colors.BLACK)
+
+
+func set_beat_duration(amount: int) -> void:
+	beat_duration = amount
+	$Sprite.frame = beat_duration - 1

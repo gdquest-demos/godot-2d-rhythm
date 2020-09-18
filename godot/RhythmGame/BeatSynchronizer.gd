@@ -2,8 +2,8 @@ extends Node
 
 var bpm := 124
 var bps := 60.0 / bpm
-var last_beat := 0
-var last_time := 0.0
+var hbps := bps * 0.5 # half beats per second
+var last_half_beat := 0
 
 onready var stream := $AudioStreamPlayer
 
@@ -25,17 +25,17 @@ func _process(_delta: float) -> void:
 		+ AudioServer.get_time_since_last_mix()
 		- AudioServer.get_output_latency()
 	)
-	last_time = time
 
-	var beat := int(time / bps)
+	var half_beat := int(time / hbps)
 
-	if beat > last_beat:
-		last_beat = beat
-		Events.emit_signal("beat_incremented", {"beat_number": beat, "bps": bps})
+	if half_beat > last_half_beat:
+		last_half_beat = half_beat
+		Events.emit_signal("beat_incremented", {"beat_number": half_beat, "bps": bps})
 
 
 func _load_track(msg: Dictionary) -> void:
 	stream.stream = load(msg.stream)
 	bpm = msg.bpm
 	bps = 60.0 / bpm
+	hbps = bps * 0.5
 	play_audio()

@@ -23,7 +23,7 @@ onready var label_first := $LabelFirstBeat
 onready var label_second := $LabelSecondBeat
 onready var animation_player := $AnimationPlayer
 onready var start_timer := $StartTimer
-onready var timer := $Timer
+onready var score_timer := $ScoreTimer
 onready var target_circle := $TargetCircle
 
 
@@ -32,7 +32,7 @@ func _ready() -> void:
 
 	yield(start_timer, "timeout")
 	moving = true
-	timer.start(bps * beat_duration / segments)
+	score_timer.start(bps * beat_duration / segments / 2.0)
 
 
 func _draw() -> void:
@@ -69,7 +69,7 @@ func setup(data: Dictionary) -> void:
 	_path_end = roller_line.path_points[roller_line.path_points.size() - 1]
 
 	bps = data.bps
-	speed = 1.0 / bps / beat_duration
+	speed = 2.0 / bps / beat_duration
 
 	label_first.rect_position = _path_start - Vector2.ONE * 50
 	label_second.rect_position = _path_end - Vector2.ONE * 50
@@ -119,7 +119,7 @@ func _on_Area2D_mouse_entered() -> void:
 		player_tracking = true
 
 
-func _on_Timer_timeout() -> void:
+func _on_ScoreTimer_timeout():
 	if player_tracking:
 		score += 1
-	timer.start()
+	score_timer.start()

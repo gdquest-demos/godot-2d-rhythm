@@ -151,7 +151,7 @@ script = SubResource( 4 )
 wait_time = 0.01
 autostart = true
 
-[node name="Timer" type="Timer" parent="."]
+[node name="ScoreTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -192,4 +192,4 @@ one_shot = true
 [connection signal="mouse_entered" from="RollerPath/Roller" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="RollerPath/Roller" to="." method="_on_Area2D_mouse_exited"]
 [connection signal="timeout" from="RollerLine2D/Timer" to="RollerLine2D" method="_on_Timer_timeout"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]

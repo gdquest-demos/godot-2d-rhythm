@@ -39,7 +39,7 @@ func setup(data: Dictionary) -> void:
 
 	fill_color = data.color
 
-	target_circle.set_up(radius_start, radius_perfect, bps, beat_delay)
+	target_circle.set_up(150, radius_perfect, bps, beat_delay)
 	target_circle.fill_color = fill_color
 	target_circle.global_position = global_position
 
