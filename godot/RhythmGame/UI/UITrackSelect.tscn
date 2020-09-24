@@ -9,10 +9,6 @@
 [ext_resource path="res://RhythmGame/Tracks/DiscoLounge/disco_lounge.tres" type="Resource" id=7]
 [ext_resource path="res://RhythmGame/Tracks/Werq/werq.tres" type="Resource" id=8]
 
-
-
-
-
 [node name="UITrackSelect" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -47,7 +43,7 @@ align = 1
 
 [node name="Icon" type="TextureRect" parent="VBoxContainer/HSplitContainer"]
 margin_left = 414.0
-margin_right = 824.0
+margin_right = 825.0
 margin_bottom = 400.0
 size_flags_horizontal = 3
 texture = ExtResource( 3 )
@@ -57,7 +53,7 @@ __meta__ = {
 }
 
 [node name="Artist" type="Label" parent="VBoxContainer/HSplitContainer"]
-margin_left = 828.0
+margin_left = 829.0
 margin_top = 160.0
 margin_right = 1240.0
 margin_bottom = 239.0
@@ -112,6 +108,9 @@ margin_bottom = 176.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 texture_normal = ExtResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -6.0
 [connection signal="pressed" from="VBoxContainer/TrackSelection/ButtonPrevious" to="." method="_on_ButtonPrevious_pressed"]
 [connection signal="pressed" from="VBoxContainer/TrackSelection/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
 [connection signal="pressed" from="VBoxContainer/TrackSelection/ButtonNext" to="." method="_on_ButtonNext_pressed"]

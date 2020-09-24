@@ -8,6 +8,7 @@ onready var track_name := $VBoxContainer/Name
 onready var track_bpm := $VBoxContainer/HSplitContainer/BPM
 onready var track_icon := $VBoxContainer/HSplitContainer/Icon
 onready var track_artist := $VBoxContainer/HSplitContainer/Artist
+onready var stream := $AudioStreamPlayer
 
 
 func _ready() -> void:
@@ -20,18 +21,27 @@ func _update() -> void:
 	track_icon.texture = _data.icon
 	track_bpm.text = "%s bpm" % _data.bpm
 	track_artist.text = _data.artist
+	stream.stream = load(_data.stream)
+	stream.play()
 
 
 func _on_ButtonPlay_pressed() -> void:
 	Events.emit_signal("track_selected", tracks[_track_index].get_data())
 	visible = false
+	stream.stop()
 
 
 func _on_ButtonPrevious_pressed() -> void:
-	_track_index = max(0, _track_index - 1)
-	_update()
+	var _new_track_index = max(0, _track_index - 1)
+	
+	if _new_track_index != _track_index:
+		_track_index = _new_track_index
+		_update()
 
 
 func _on_ButtonNext_pressed() -> void:
-	_track_index = min(tracks.size() - 1, _track_index + 1)
-	_update()
+	var _new_track_index = min(tracks.size() - 1, _track_index + 1)
+	
+	if _new_track_index != _track_index:
+		_track_index = _new_track_index
+		_update()

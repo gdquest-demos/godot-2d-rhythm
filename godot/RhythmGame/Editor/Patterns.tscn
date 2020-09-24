@@ -14,3 +14,4 @@ __meta__ = {
 [node name="Werq" parent="." instance=ExtResource( 2 )]
 
 [node name="Disco Lounge" parent="." instance=ExtResource( 3 )]
+visible = false

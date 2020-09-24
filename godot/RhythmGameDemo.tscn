@@ -27,7 +27,6 @@ script = ExtResource( 7 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BeatSynchronizer"]
 stream = ExtResource( 4 )
-volume_db = -8.0
 
 [node name="BeatSpawner" type="Node" parent="."]
 script = ExtResource( 2 )
