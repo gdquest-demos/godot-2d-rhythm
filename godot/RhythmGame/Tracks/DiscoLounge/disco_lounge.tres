@@ -7,6 +7,6 @@
 script = ExtResource( 1 )
 label = "Disco Lounge"
 stream = "res://RhythmGame/Tracks/DiscoLounge/DiscoLounge.ogg"
-bpm = 109
+bpm = 110
 icon = ExtResource( 2 )
 artist = "Kevin MacLeod"
