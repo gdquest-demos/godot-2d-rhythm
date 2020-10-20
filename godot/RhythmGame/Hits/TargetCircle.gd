@@ -6,7 +6,6 @@ export var shrink_speed := 0.0
 
 var radius := 0.0
 var end_radius := 0.0
-var fill_color := Colors.WHITE
 var max_radius := 0.0
 
 onready var animation_player := $AnimationPlayer

@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://RhythmGame/UI/UIScore.gd" type="Script" id=1]
+[ext_resource path="res://RhythmGame/UI/TrackPlaying/UIScore.gd" type="Script" id=1]
 [ext_resource path="res://RhythmGame/UI/theme/fonts/FontDefault.tres" type="DynamicFont" id=2]
+
 
 [node name="UIScore" type="Label"]
 anchor_right = 1.0

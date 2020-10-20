@@ -10,6 +10,7 @@ __meta__ = {
 }
 
 [node name="Cephalopod" parent="." instance=ExtResource( 1 )]
+visible = false
 
 [node name="Werq" parent="." instance=ExtResource( 2 )]
 

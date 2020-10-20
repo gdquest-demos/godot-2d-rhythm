@@ -3,5 +3,5 @@
 [ext_resource path="res://RhythmGame/UI/theme/fonts/Montserrat-Bold.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 64
+size = 90
 font_data = ExtResource( 1 )

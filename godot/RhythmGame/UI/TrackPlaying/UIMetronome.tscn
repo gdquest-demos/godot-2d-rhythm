@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://RhythmGame/Metronome.gd" type="Script" id=1]
+[ext_resource path="res://RhythmGame/UI/TrackPlaying/Metronome.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+
+
 
 [node name="Metronome" type="Sprite"]
 position = Vector2( 60.0172, 661.052 )

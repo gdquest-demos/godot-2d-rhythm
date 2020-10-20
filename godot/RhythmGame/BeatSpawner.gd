@@ -50,14 +50,14 @@ func _load_tracks() -> void:
 		tracks[_track.name] = {"delay_start": _track.delay_start, "beats": []}
 
 		for _bar in _track.get_children():
-			var _color := Colors.get_random_color()
+			var _sprite_frame := int(rand_range(0, 5))
 			for _beat in _bar.get_children():
 				var _beat_data: Dictionary = _beat.get_data()
-				_beat_data.color = _color
+				_beat_data.color = _sprite_frame
 				tracks[_track.name]["beats"].append(_beat_data)
 
 				# Add additional rests if needed
-				for i in range(_beat_data.beat_duration - 1):
+				for _i in range(_beat_data.beat_duration - 1):
 					tracks[_track.name]["beats"].append({})
 
 	patterns.queue_free()

@@ -6,7 +6,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 640, 240, 0, 0, 0, 0, 880, 240 )
+"points": PoolVector2Array( 0, 0, 0, 0, -0.25, 0, 0, 0, 0, 0, 219, 0 )
 }
 
 [node name="EditorHitRoller" type="Path2D"]
@@ -15,16 +15,16 @@ curve = SubResource( 1 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 640, 240 )
+position = Vector2( -0.25, 0 )
 texture = ExtResource( 3 )
 hframes = 4
 frame = 3
 
 [node name="BeatNumber" type="Label" parent="."]
-margin_left = 590.0
-margin_top = 190.0
-margin_right = 690.0
-margin_bottom = 290.0
+margin_left = -48.0
+margin_top = -48.0
+margin_right = 52.0
+margin_bottom = 63.0
 rect_min_size = Vector2( 100, 100 )
 custom_fonts/font = ExtResource( 1 )
 text = "1"

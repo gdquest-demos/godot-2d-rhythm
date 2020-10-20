@@ -51,6 +51,7 @@ shader_param/torus_hardness = -5.0
 shader_param/torus_radius = 0.487
 
 [node name="TargetCircle" type="Position2D"]
+modulate = Color( 0.466667, 0.490196, 0.52549, 0.54902 )
 z_index = -1
 script = ExtResource( 1 )
 

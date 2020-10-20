@@ -2,25 +2,27 @@
 
 [ext_resource path="res://RhythmGameDemo.gd" type="Script" id=1]
 [ext_resource path="res://RhythmGame/BeatSpawner.gd" type="Script" id=2]
-[ext_resource path="res://RhythmGame/UI/UITrackFinished.tscn" type="PackedScene" id=3]
+[ext_resource path="res://RhythmGame/UI/TrackFinished/UITrackFinished.tscn" type="PackedScene" id=3]
 [ext_resource path="res://RhythmGame/Tracks/Cephalopod/Cephalopod.ogg" type="AudioStream" id=4]
 [ext_resource path="res://RhythmGame/Editor/Patterns.tscn" type="PackedScene" id=5]
-[ext_resource path="res://RhythmGame/UI/UITrack.tscn" type="PackedScene" id=6]
+[ext_resource path="res://RhythmGame/UI/TrackPlaying/UITrackPlaying.tscn" type="PackedScene" id=6]
 [ext_resource path="res://RhythmGame/BeatSynchronizer.gd" type="Script" id=7]
-[ext_resource path="res://RhythmGame/UI/UITrackSelect.tscn" type="PackedScene" id=8]
+[ext_resource path="res://RhythmGame/UI/TrackSelector/UITrackSelector.tscn" type="PackedScene" id=8]
 [ext_resource path="res://RhythmGame/VFX/VFXScore.tscn" type="PackedScene" id=9]
 [ext_resource path="res://RhythmGame/Hits/HitRoller.tscn" type="PackedScene" id=10]
 [ext_resource path="res://RhythmGame/Hits/HitBeat.tscn" type="PackedScene" id=11]
-
-[sub_resource type="Environment" id=1]
-background_mode = 4
-glow_enabled = true
-glow_blend_mode = 0
-glow_bicubic_upscale = true
+[ext_resource path="res://RhythmGame/UI/background_shapes.png" type="Texture" id=12]
 
 [node name="RhythmGameDemo" type="Node2D"]
 script = ExtResource( 1 )
 sprite_fx = ExtResource( 9 )
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -20
+
+[node name="Shapes" type="Sprite" parent="Background"]
+texture = ExtResource( 12 )
+centered = false
 
 [node name="BeatSynchronizer" type="Node" parent="."]
 script = ExtResource( 7 )
@@ -38,13 +40,10 @@ visible = false
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="UITrack" parent="UI" instance=ExtResource( 6 )]
+[node name="UITrackPlaying" parent="UI" instance=ExtResource( 6 )]
 visible = false
 
 [node name="UITrackFinished" parent="UI" instance=ExtResource( 3 )]
 visible = false
 
-[node name="UITrackSelect" parent="UI" instance=ExtResource( 8 )]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
+[node name="UITrackSelector" parent="UI" instance=ExtResource( 8 )]

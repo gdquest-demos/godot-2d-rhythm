@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/track_next.png-fdb22bdb255d3a818a9f7af8e590fe00.stex"
+path="res://.import/background_end_screen.png-ab935cf9dea8c6fba0ba219df26d1b45.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RhythmGame/UI/track_next.png"
-dest_files=[ "res://.import/track_next.png-fdb22bdb255d3a818a9f7af8e590fe00.stex" ]
+source_file="res://RhythmGame/UI/TrackFinished/background_end_screen.png"
+dest_files=[ "res://.import/background_end_screen.png-ab935cf9dea8c6fba0ba219df26d1b45.stex" ]
 
 [params]
 

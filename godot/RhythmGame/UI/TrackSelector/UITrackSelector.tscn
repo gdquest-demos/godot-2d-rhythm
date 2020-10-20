@@ -1,0 +1,129 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://RhythmGame/Tracks/DiscoLounge/disco_lounge.tres" type="Resource" id=1]
+[ext_resource path="res://RhythmGame/UI/TrackSelector/UITrackSelector.gd" type="Script" id=2]
+[ext_resource path="res://RhythmGame/UI/TrackSelector/SelectArea.gd" type="Script" id=3]
+[ext_resource path="res://RhythmGame/UI/button_go_normal.png" type="Texture" id=4]
+[ext_resource path="res://RhythmGame/Tracks/Werq/werq.tres" type="Resource" id=5]
+[ext_resource path="res://RhythmGame/UI/TrackSelector/DragDetector.gd" type="Script" id=6]
+[ext_resource path="res://RhythmGame/UI/button_go_hover.png" type="Texture" id=7]
+[ext_resource path="res://RhythmGame/Tracks/Cephalopod/cephalopod.tres" type="Resource" id=8]
+[ext_resource path="res://RhythmGame/UI/theme/theme.tres" type="Theme" id=9]
+[ext_resource path="res://RhythmGame/UI/TrackSelector/TrackTile.tscn" type="PackedScene" id=10]
+[ext_resource path="res://RhythmGame/UI/TrackSelector/TrackTiles.gd" type="Script" id=11]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5, 200 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 960, 270 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "fade_in_track"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.420448, 1 ),
+"update": 0,
+"values": [ -80.0, -12.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "fade_out_track"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.42, 1 ),
+"update": 0,
+"values": [ -12.0, -80.0 ]
+}
+
+[node name="UITrackSelector" type="Control"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectArea" type="Area2D" parent="."]
+position = Vector2( 960, 270 )
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SelectArea"]
+shape = SubResource( 1 )
+
+[node name="TrackCarousel" type="Position2D" parent="."]
+position = Vector2( 960, 270 )
+
+[node name="TrackTiles" type="Node2D" parent="TrackCarousel"]
+script = ExtResource( 11 )
+tracks = [ ExtResource( 8 ), ExtResource( 1 ), ExtResource( 5 ) ]
+track_tile_scene = ExtResource( 10 )
+
+[node name="AlignTimer" type="Timer" parent="TrackCarousel/TrackTiles"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Tween" type="Tween" parent="TrackCarousel/TrackTiles"]
+
+[node name="DragDetector" type="Area2D" parent="TrackCarousel"]
+collision_mask = 0
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrackCarousel/DragDetector"]
+shape = SubResource( 2 )
+
+[node name="TrackName" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_top = 502.224
+margin_right = 1920.0
+margin_bottom = 613.224
+theme = ExtResource( 9 )
+text = "Track Name"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GoButton" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 790.0
+margin_top = 660.608
+margin_right = 1130.0
+margin_bottom = 1000.61
+mouse_filter = 1
+texture_normal = ExtResource( 4 )
+texture_hover = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fade_in_track = SubResource( 3 )
+anims/fade_out_track = SubResource( 4 )
+[connection signal="area_entered" from="SelectArea" to="SelectArea" method="_on_area_entered"]
+[connection signal="track_selected" from="SelectArea" to="TrackCarousel/TrackTiles" method="_on_track_selected"]
+[connection signal="track_selected" from="SelectArea" to="." method="update_track_info"]
+[connection signal="dragged" from="TrackCarousel/DragDetector" to="TrackCarousel/TrackTiles" method="scroll"]
+[connection signal="input_event" from="TrackCarousel/DragDetector" to="TrackCarousel/DragDetector" method="_on_input_event"]
+[connection signal="mouse_exited" from="TrackCarousel/DragDetector" to="TrackCarousel/DragDetector" method="_on_mouse_exited"]
+[connection signal="pressed" from="GoButton" to="." method="_on_GoButton_pressed"]

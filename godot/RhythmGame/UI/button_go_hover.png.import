@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/track_previous.png-82415ffe195a4dc11ccb9984229bc720.stex"
+path="res://.import/button_go_hover.png-2b4c4c1578079c2e091a96f8f0a17976.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RhythmGame/UI/track_previous.png"
-dest_files=[ "res://.import/track_previous.png-82415ffe195a4dc11ccb9984229bc720.stex" ]
+source_file="res://RhythmGame/UI/button_go_hover.png"
+dest_files=[ "res://.import/button_go_hover.png-2b4c4c1578079c2e091a96f8f0a17976.stex" ]
 
 [params]
 

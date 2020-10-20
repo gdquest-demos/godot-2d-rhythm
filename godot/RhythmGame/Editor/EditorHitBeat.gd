@@ -12,7 +12,7 @@ func _enter_tree() -> void:
 
 
 func _draw() -> void:
-	draw_circle(Vector2.ZERO, 64.0, Colors.BLACK)
+	draw_circle(Vector2.ZERO, 75.0, Color.black)
 
 
 func get_data() -> Dictionary:

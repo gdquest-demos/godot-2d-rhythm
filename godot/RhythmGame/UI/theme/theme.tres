@@ -6,7 +6,6 @@
 [ext_resource path="res://RhythmGame/UI/theme/button/pressed.tres" type="StyleBox" id=4]
 [ext_resource path="res://RhythmGame/UI/theme/fonts/FontDefault.tres" type="DynamicFont" id=5]
 
-
 [resource]
 default_font = ExtResource( 5 )
 Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )

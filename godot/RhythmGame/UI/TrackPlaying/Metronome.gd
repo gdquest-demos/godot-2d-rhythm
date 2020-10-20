@@ -1,7 +1,7 @@
 extends Sprite
 
 var start := Vector2.ONE
-var end := Vector2.ONE * 2
+var end := Vector2.ONE * 1.5
 
 onready var tween := $Tween
 

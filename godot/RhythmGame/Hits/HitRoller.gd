@@ -12,15 +12,19 @@ var segments := 10
 var _path_start := Vector2.ZERO
 var _path_end := Vector2.ZERO
 
-var fill_color = Colors.WHITE
+var radius_start := 150.0
+var radius_perfect := 70.0  #(150 - TargetCircle width) / 2.0
 
 var score := 1
 
 onready var roller_path := $RollerPath
 onready var roller := $RollerPath/Roller
 onready var roller_line := $RollerLine2D
-onready var label_first := $LabelFirstBeat
-onready var label_second := $LabelSecondBeat
+onready var sprite_first := $FirstBeatSprite
+onready var label_first := $FirstBeatSprite/LabelFirstBeat
+onready var sprite_second := $SecondBeatSprite
+onready var roller_sprite := $RollerPath/Roller/Sprite
+onready var label_second := $SecondBeatSprite/LabelSecondBeat
 onready var animation_player := $AnimationPlayer
 onready var start_timer := $StartTimer
 onready var score_timer := $ScoreTimer
@@ -32,15 +36,8 @@ func _ready() -> void:
 
 	yield(start_timer, "timeout")
 	moving = true
+	roller.find_node("AnimationPlayer").play("show")
 	score_timer.start(bps * beat_duration / segments / 2.0)
-
-
-func _draw() -> void:
-	draw_circle(_path_start, 64.0, fill_color)
-	draw_arc(_path_start, 64.0, 0.0, 2 * PI, 100, Colors.WHITE, 6.0, true)
-
-	draw_circle(_path_end, 64.0, fill_color)
-	draw_arc(_path_end, 64.0, 0.0, 2 * PI, 100, Colors.WHITE, 6.0, true)
 
 
 func _process(delta: float) -> void:
@@ -71,17 +68,16 @@ func setup(data: Dictionary) -> void:
 	bps = data.bps
 	speed = 2.0 / bps / beat_duration
 
-	label_first.rect_position = _path_start - Vector2.ONE * 50
-	label_second.rect_position = _path_end - Vector2.ONE * 50
+	sprite_first.position = _path_start
+	sprite_second.position = _path_end
 
 	position = data.position
 
-	set_color(data.color)
+	set_sprite(data.color)
 
 	start_timer.start(bps * beat_delay)
 
-	target_circle.set_up(128.0, 64.0, bps, beat_delay)
-	target_circle.fill_color = fill_color
+	target_circle.set_up(radius_start, radius_perfect, bps, beat_delay)
 	target_circle.global_position = to_global(_path_start)
 
 
@@ -91,10 +87,10 @@ func set_beat_number(number: int) -> void:
 	label_second.text = str(number + 1)
 
 
-func set_color(color: Color) -> void:
-	fill_color = color
-	roller.fill_color = color
-	roller_line.default_color = color
+func set_sprite(frame: int) -> void:
+	sprite_first.frame = frame
+	sprite_second.frame = frame
+	roller_sprite.frame = frame
 
 
 func _complete() -> void:

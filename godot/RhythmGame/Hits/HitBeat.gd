@@ -7,20 +7,19 @@ var bps := 60.0 / 124.0
 var beat_delay := 4.0  #beats before perfect
 var speed := 1.0 / bps / beat_delay
 
-var radius_start := 124.0
+var radius_start := 150.0
 var radius := radius_start
-var radius_perfect := 64.0
+var radius_perfect := 70.0  #(150 - TargetCircle width) / 2.0
 
-var offset_perfect := 3
-var offset_good := 6
-var offset_ok := 18
-var offset_miss := 19
-
-var fill_color := Color.white
+var offset_perfect := 4
+var offset_good := 8
+var offset_ok := 16
+var offset_miss := 17
 
 var score := 0
 
 onready var animation_player := $AnimationPlayer
+onready var sprite := $Sprite
 onready var touch_area := $Area2D
 onready var target_circle := $TargetCircle
 
@@ -37,21 +36,15 @@ func setup(data: Dictionary) -> void:
 
 	global_position = data.global_position
 
-	fill_color = data.color
+	sprite.frame = data.color
 
-	target_circle.set_up(150, radius_perfect, bps, beat_delay)
-	target_circle.fill_color = fill_color
+	target_circle.set_up(radius_start, radius_perfect, bps, beat_delay)
 	target_circle.global_position = global_position
 
 
 func set_beat_number(number: int) -> void:
 	beat_number = number
 	$Label.text = str(beat_number)
-
-
-func _draw() -> void:
-	draw_circle(Vector2.ZERO, radius_perfect, fill_color)
-	draw_arc(Vector2.ZERO, radius_perfect, 0.0, 2 * PI, 100, Colors.WHITE, 6.0, true)
 
 
 func _process(delta: float) -> void:
