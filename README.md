@@ -2,14 +2,14 @@
 
 This demo is a rhythm game designed for the course [Godot 2D Secrets](https://www.kickstarter.com/projects/gdquest/godot-2d-secrets-level-up-your-game-creation-skills).
 
-It's currently a work-in-progress, but it has some beat patterns to play with.
+It has three demo tracks to play: **Cephalopod**, **Disco Lounge** and **Werq**. These tracks are by [Kevin MacLeod](https://incompetech.com/).
 
-![In-game](./img/screen-01.png)
+![In-game](./img/screen-gameplay.png)
 
 ## Editing beat patterns
 
-At the minute, patterns are edited using `Patterns.tscn`. Each pattern should have 8 beats, including rests. The demo has three patterns that are repeated three times. The track is built by grabbing all available patterns in `Patterns.tscn` from top to bottom of the scene tree. This process repeats if there aren't enough patterns needed for the track.
+Edit tracks by using its `.tscn` scene. You can find them in `res://RhythmGame/Tracks`. Each pattern should add up to 8 whole beats (or 16 half beats), including rests.
 
-![Pattern editor](./img/screen-03.png)
+![Pattern editor](./img/screen-editor.png)
 
 ➡ Follow us on [Twitter](https://twitter.com/NathanGDQuest) and [YouTube](https://www.youtube.com/c/gdquest/) for free game creation tutorials, tips, and news!
