@@ -1,7 +1,7 @@
 tool
 extends Position2D
 
-export (int, 1, 4) var beat_duration := 2 setget set_beat_duration
+export (int, 1, 4) var half_beats := 2 setget set_half_beats
 
 var beat_number := 1
 
@@ -20,10 +20,10 @@ func get_data() -> Dictionary:
 		scene = "hit_beat",
 		beat_number = beat_number,
 		global_position = global_position,
-		beat_duration = beat_duration
+		beat_duration = half_beats
 	}
 
 
-func set_beat_duration(amount: int) -> void:
-	beat_duration = amount
-	$Sprite.frame = beat_duration - 1
+func set_half_beats(amount: int) -> void:
+	half_beats = amount
+	$Sprite.frame = half_beats - 1

@@ -1,7 +1,7 @@
 tool
 extends Path2D
 
-export (int, 1, 4) var beat_duration := 4 setget set_beat_duration
+export (int, 1, 4) var half_beats := 4 setget set_half_beats
 
 var beat_number := 1
 
@@ -21,7 +21,7 @@ func get_data() -> Dictionary:
 	return {
 		scene = "hit_roller",
 		beat_number = beat_number,
-		beat_duration = beat_duration,
+		beat_duration = half_beats,
 		position = position,
 		global_position = global_position,
 		curve = curve
@@ -33,6 +33,6 @@ func _draw() -> void:
 	draw_circle(curve.get_point_position(curve.get_point_count() - 1), 75.0, Color.black)
 
 
-func set_beat_duration(amount: int) -> void:
-	beat_duration = amount
-	$Sprite.frame = beat_duration - 1
+func set_half_beats(amount: int) -> void:
+	half_beats = amount
+	$Sprite.frame = half_beats - 1
