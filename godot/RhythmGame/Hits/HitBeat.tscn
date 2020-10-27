@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://RhythmGame/Hits/HitBeat.gd" type="Script" id=1]
-[ext_resource path="res://RhythmGame/UI/theme/fonts/FontDefault.tres" type="DynamicFont" id=2]
+[ext_resource path="res://RhythmGame/UI/LabelCustom.tscn" type="PackedScene" id=2]
 [ext_resource path="res://RhythmGame/Hits/TargetCircle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://RhythmGame/Hits/hit_sprites.png" type="Texture" id=5]
 
@@ -110,18 +110,11 @@ anims/destroy = SubResource( 2 )
 anims/hide = SubResource( 3 )
 anims/show = SubResource( 4 )
 
-[node name="Label" type="Label" parent="."]
-margin_left = -50.0
-margin_top = -55.0
-margin_right = 50.0
-margin_bottom = 56.0
-custom_fonts/font = ExtResource( 2 )
-text = "1"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Label" parent="." instance=ExtResource( 2 )]
+margin_left = -75.0
+margin_top = -75.0
+margin_right = 75.0
+margin_bottom = 75.0
 
 [node name="TargetCircle" parent="." instance=ExtResource( 3 )]
 [connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]

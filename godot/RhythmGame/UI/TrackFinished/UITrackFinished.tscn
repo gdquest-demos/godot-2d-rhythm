@@ -1,12 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://RhythmGame/UI/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://RhythmGame/UI/TrackFinished/UITrackFinished.gd" type="Script" id=2]
 [ext_resource path="res://RhythmGame/UI/TrackFinished/button_back_normal.png" type="Texture" id=3]
 [ext_resource path="res://RhythmGame/UI/TrackFinished/background_end_screen.png" type="Texture" id=4]
 [ext_resource path="res://RhythmGame/UI/TrackFinished/button_back_hover.png" type="Texture" id=5]
-
-
+[ext_resource path="res://RhythmGame/UI/LabelCustom.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "show"
@@ -67,24 +66,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GameOverInfo" type="Label" parent="."]
+[node name="GameOverInfo" parent="." instance=ExtResource( 6 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -554.0
-margin_top = -247.9
+margin_top = -244.5
 margin_right = 554.0
-margin_bottom = 91.0997
-size_flags_horizontal = 3
-size_flags_vertical = 6
+margin_bottom = 94.5
+rect_min_size = Vector2( 1108, 0 )
 text = "Thanks for playing this Godot rhythm game demo!"
-align = 1
-valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ButtonBack" type="TextureButton" parent="."]
 anchor_left = 0.5

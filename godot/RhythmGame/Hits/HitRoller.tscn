@@ -2,16 +2,16 @@
 
 [ext_resource path="res://RhythmGame/Hits/HitRoller.gd" type="Script" id=1]
 [ext_resource path="res://RhythmGame/Hits/TargetCircle.tscn" type="PackedScene" id=2]
-[ext_resource path="res://RhythmGame/UI/theme/fonts/FontDefault.tres" type="DynamicFont" id=3]
 [ext_resource path="res://RhythmGame/Hits/roller_sprites.png" type="Texture" id=4]
 [ext_resource path="res://RhythmGame/Hits/hit_sprites.png" type="Texture" id=5]
+[ext_resource path="res://RhythmGame/UI/LabelCustom.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -0.411484, 0.919983, -143.884, -11.7242, 143.884, 11.7242, 111.092, 88.4845, 0, 0, 0, 0, 240.398, 214.929 )
 }
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=7]
 script/source = "extends Line2D
 
 
@@ -30,11 +30,10 @@ func _on_Timer_timeout():
 	_point_number += 1
 "
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=8]
 radius = 90.0
 
-[sub_resource type="Animation" id=3]
-resource_name = "show"
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:scale")
 tracks/0/interp = 1
@@ -151,7 +150,7 @@ default_color = Color( 0.466667, 0.490196, 0.52549, 0.54902 )
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
-script = SubResource( 4 )
+script = SubResource( 7 )
 
 [node name="Timer" type="Timer" parent="RollerLine2D"]
 wait_time = 0.01
@@ -161,36 +160,14 @@ autostart = true
 texture = ExtResource( 5 )
 hframes = 6
 
-[node name="LabelFirstBeat" type="Label" parent="FirstBeatSprite"]
-margin_left = -50.0
-margin_top = -55.0
-margin_right = 50.0001
-margin_bottom = 56.0
-custom_fonts/font = ExtResource( 3 )
-text = "1"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="LabelFirstBeat" parent="FirstBeatSprite" instance=ExtResource( 6 )]
 
 [node name="SecondBeatSprite" type="Sprite" parent="."]
 position = Vector2( 234.274, 208.706 )
 texture = ExtResource( 5 )
 hframes = 6
 
-[node name="LabelSecondBeat" type="Label" parent="SecondBeatSprite"]
-margin_left = -50.0
-margin_top = -55.0
-margin_right = 50.0001
-margin_bottom = 56.0
-custom_fonts/font = ExtResource( 3 )
-text = "1"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="LabelSecondBeat" parent="SecondBeatSprite" instance=ExtResource( 6 )]
 
 [node name="RollerPath" type="PathFollow2D" parent="."]
 position = Vector2( -0.411484, 0.919983 )
@@ -206,10 +183,10 @@ hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RollerPath/Roller"]
 visible = false
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RollerPath/Roller"]
-anims/show = SubResource( 3 )
+anims/show = SubResource( 4 )
 
 [node name="ScoreTimer" type="Timer" parent="."]
 one_shot = true

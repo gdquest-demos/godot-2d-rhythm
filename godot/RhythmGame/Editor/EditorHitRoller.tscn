@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://RhythmGame/UI/theme/fonts/FontDefault.tres" type="DynamicFont" id=1]
+[ext_resource path="res://RhythmGame/UI/LabelCustom.tscn" type="PackedScene" id=1]
 [ext_resource path="res://RhythmGame/Editor/EditorHitRoller.gd" type="Script" id=2]
 [ext_resource path="res://RhythmGame/Editor/icon_beats.png" type="Texture" id=3]
 
@@ -20,16 +20,4 @@ texture = ExtResource( 3 )
 hframes = 4
 frame = 3
 
-[node name="BeatNumber" type="Label" parent="."]
-margin_left = -48.0
-margin_top = -48.0
-margin_right = 52.0
-margin_bottom = 63.0
-rect_min_size = Vector2( 100, 100 )
-custom_fonts/font = ExtResource( 1 )
-text = "1"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="BeatNumber" parent="." instance=ExtResource( 1 )]

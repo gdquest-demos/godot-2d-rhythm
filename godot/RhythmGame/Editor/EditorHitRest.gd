@@ -11,6 +11,10 @@ func _enter_tree() -> void:
 	$BeatNumber.text = str(beat_number)
 
 
+func _draw():
+	draw_circle(Vector2.ZERO, 75.0, Color.black)
+
+
 func get_data() -> Dictionary:
 	return {beat_duration = beat_duration}
 

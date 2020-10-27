@@ -16,14 +16,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="UIScore" parent="." instance=ExtResource( 2 )]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -960.0
-margin_right = 960.0
-margin_bottom = 111.0
-size_flags_vertical = 0
-
 [node name="Metronome" parent="." instance=ExtResource( 3 )]
 position = Vector2( 96, 984 )
 texture = ExtResource( 5 )
+
+[node name="UIScore" parent="." instance=ExtResource( 2 )]
+anchor_right = 1.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 0.0
+margin_bottom = 111.0
