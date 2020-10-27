@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://RhythmGame/UI/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://RhythmGame/UI/TrackFinished/UITrackFinished.gd" type="Script" id=2]
 [ext_resource path="res://RhythmGame/UI/TrackFinished/button_back_normal.png" type="Texture" id=3]
 [ext_resource path="res://RhythmGame/UI/TrackFinished/background_end_screen.png" type="Texture" id=4]
@@ -46,7 +45,6 @@ margin_top = -272.5
 margin_right = 560.0
 margin_bottom = 272.5
 size_flags_vertical = 3
-theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
