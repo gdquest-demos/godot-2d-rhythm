@@ -3,12 +3,12 @@ extends Node2D
 
 export (int, 1, 4) var half_beats := 2 setget set_half_beats
 
-var beat_number := 1
+var _beat_number := 1
 
 
 func _enter_tree() -> void:
-	beat_number = get_index() + 1
-	$BeatNumber.text = str(beat_number)
+	_beat_number = get_index() + 1
+	$BeatNumber.text = str(_beat_number)
 
 
 func _draw():

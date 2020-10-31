@@ -1,6 +1,6 @@
 extends Label
 
-var total_score := 0
+var _total_score := 0
 
 
 func _ready() -> void:
@@ -8,5 +8,5 @@ func _ready() -> void:
 
 
 func _add_score(msg: Dictionary) -> void:
-	total_score += msg.score
-	text = str(total_score)
+	_total_score += msg.score
+	text = str(_total_score)

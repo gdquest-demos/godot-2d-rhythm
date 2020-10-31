@@ -9,8 +9,8 @@ var _selected_track_tile = null
 var _track_tiles := []
 var _bound := {"left": 0, "right": 0}
 
-onready var align_timer := $AlignTimer
-onready var tween := $Tween
+onready var _align_timer := $AlignTimer
+onready var _tween := $Tween
 
 
 func _ready() -> void:
@@ -33,20 +33,20 @@ func _ready() -> void:
 
 func _input(event) -> void:
 	if event.is_action_released("touch"):
-		align_timer.start()
-		yield(align_timer, "timeout")
+		_align_timer.start()
+		yield(_align_timer, "timeout")
 		_snap_to_track(_selected_track_tile)
 
 
 func _process(_delta) -> void:
-	if tween.is_active():
+	if _tween.is_active():
 		_update_tile_visuals()
 
 
 func _snap_to_track(track_tile) -> void:
 	var relative_position = track_tile.global_position.x - get_parent().global_position.x
 
-	tween.interpolate_property(
+	_tween.interpolate_property(
 		self,
 		"position",
 		position,
@@ -55,19 +55,19 @@ func _snap_to_track(track_tile) -> void:
 		Tween.TRANS_EXPO,
 		Tween.EASE_OUT
 	)
-	tween.start()
+	_tween.start()
 
 
 func scroll(amount: Vector2) -> void:
-	tween.stop_all()
+	_tween.stop_all()
 	position.x = clamp(position.x + amount.x, _bound.right, _bound.left)
 	_update_tile_visuals()
-	align_timer.start()
+	_align_timer.start()
 
 
 func _update_tile_visuals() -> void:
-	var _scale
-	var _fade
+	var distance_scale
+	var distance_fade
 	for tile in _track_tiles:
 		var distance_normalized = range_lerp(
 			abs(tile.global_position.x - get_parent().global_position.x),
@@ -77,11 +77,11 @@ func _update_tile_visuals() -> void:
 			1
 		)
 
-		_scale = 1.0 - distance_normalized
-		tile.scale = Vector2.ONE * _scale
+		distance_scale = 1.0 - distance_normalized
+		tile.scale = Vector2.ONE * distance_scale
 
-		_fade = distance_normalized
-		tile.modulate.a = (1 - pow(_fade, 3))
+		distance_fade = distance_normalized
+		tile.modulate.a = (1 - pow(distance_fade, 3))
 
 
 func _on_track_selected(track_tile) -> void:

@@ -5,9 +5,9 @@ export var enabled := true
 export var hit_beat: PackedScene
 export var hit_roller: PackedScene
 
-var tracks = {}
-var track_current = []
-var delay_start := 0
+var _tracks = {}
+var _track_current = []
+var _delay_start := 0
 
 onready var scenes = {
 	"hit_beat": hit_beat, 
@@ -24,45 +24,45 @@ func _ready() -> void:
 
 
 func _spawn_beat(msg: Dictionary) -> void:
-	if not enabled or msg.beat_number <= delay_start:
+	if not enabled or msg.beat_number <= _delay_start:
 		return
 
-	if track_current.empty():
+	if _track_current.empty():
 		enabled = false
 		Events.emit_signal("track_finished", {})
 		return
 
-	var _beat: Dictionary = track_current.pop_front()
+	var beat: Dictionary = _track_current.pop_front()
 
-	if not _beat.has("scene"):
+	if not beat.has("scene"):
 		return
 
-	_beat.bps = msg.bps
+	beat.bps = msg.bps
 
-	var _new_beat: Node = scenes[_beat.scene].instance()
-	add_child(_new_beat)
+	var new_beat: Node = scenes[beat.scene].instance()
+	add_child(new_beat)
 
-	_new_beat.setup(_beat)
+	new_beat.setup(beat)
 
 
 func _load_tracks() -> void:
-	for _track in patterns.get_children():
-		tracks[_track.name] = {"delay_start": _track.delay_start, "beats": []}
+	for track in patterns.get_children():
+		_tracks[track.name] = {"delay_start": track.delay_start, "beats": []}
 
-		for _bar in _track.get_children():
-			var _sprite_frame := int(rand_range(0, 5))
-			for _beat in _bar.get_children():
-				var _beat_data: Dictionary = _beat.get_data()
-				_beat_data.color = _sprite_frame
-				tracks[_track.name]["beats"].append(_beat_data)
+		for bar in track.get_children():
+			var sprite_frame := int(rand_range(0, 5))
+			for beat in bar.get_children():
+				var beat_data: Dictionary = beat.get_data()
+				beat_data.color = sprite_frame
+				_tracks[track.name]["beats"].append(beat_data)
 
 				# Add additional rests if needed
-				for _i in range(_beat_data.beat_duration - 1):
-					tracks[_track.name]["beats"].append({})
+				for _i in range(beat_data.beat_duration - 1):
+					_tracks[track.name]["beats"].append({})
 
 	patterns.queue_free()
 
 
 func _select_track(msg: Dictionary) -> void:
-	track_current = tracks[msg.name].beats
-	delay_start = tracks[msg.name].delay_start
+	_track_current = _tracks[msg.name].beats
+	_delay_start = _tracks[msg.name].delay_start

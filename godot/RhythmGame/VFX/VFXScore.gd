@@ -1,7 +1,12 @@
 extends Position2D
 
 
-onready var sprite := $Sprite
+const FRAME_PERFECT = 3
+const FRAME_GREAT = 2
+const FRAME_OK = 1
+
+onready var _sprite := $Sprite
+onready var _particles := $Particles2D
 
 
 func _ready() -> void:
@@ -10,10 +15,10 @@ func _ready() -> void:
 
 func set_score(score : int) -> void:
 	if score >= 10:
-		sprite.frame = 3
-		$Particles2D.emitting = true
+		_sprite.frame = FRAME_PERFECT
+		_particles.emitting = true
 	elif score >= 5:
-		sprite.frame = 2
+		_sprite.frame = FRAME_GREAT
 	elif score >= 3:
-		sprite.frame = 1
+		_sprite.frame = FRAME_OK
 

@@ -3,13 +3,13 @@ extends Path2D
 
 export (int, 1, 4) var half_beats := 4 setget set_half_beats
 
-var beat_number := 1
+var _beat_number := 1
 
 
 func _enter_tree() -> void:
-	beat_number = get_index() + 1
+	_beat_number = get_index() + 1
 
-	$BeatNumber.text = str(beat_number)
+	$BeatNumber.text = str(_beat_number)
 	$Sprite.global_position = to_global(curve.get_point_position(0))
 
 
@@ -20,7 +20,7 @@ func _ready() -> void:
 func get_data() -> Dictionary:
 	return {
 		scene = "hit_roller",
-		beat_number = beat_number,
+		beat_number = _beat_number,
 		beat_duration = half_beats,
 		position = position,
 		global_position = global_position,

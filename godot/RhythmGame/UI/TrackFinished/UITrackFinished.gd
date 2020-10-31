@@ -1,6 +1,6 @@
 extends Control
 
-onready var animation_player := $AnimationPlayer
+onready var _animation_player := $AnimationPlayer
 
 
 func _ready() -> void:
@@ -8,7 +8,7 @@ func _ready() -> void:
 
 
 func _fade_in(_msg: Dictionary) -> void:
-	animation_player.play("show")
+	_animation_player.play("show")
 
 
 func _on_ButtonBack_pressed():
