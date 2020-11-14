@@ -1,5 +1,7 @@
 # Godot 2D Rhythm Game
 
+![Rhythm game demo banner](./img/rhythm-game-banner.png)
+
 This demo is a rhythm game designed for the course [Godot 2D Secrets](https://www.kickstarter.com/projects/gdquest/godot-2d-secrets-level-up-your-game-creation-skills).
 
 It has three demo tracks to play: **Cephalopod**, **Disco Lounge** and **Werq**. These tracks are by [Kevin MacLeod](https://incompetech.com/).
