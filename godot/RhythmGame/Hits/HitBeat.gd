@@ -46,12 +46,11 @@ func setup(data: Dictionary) -> void:
 
 func set_beat_number(number: int) -> void:
 	beat_number = number
-	$Label.text = str(beat_number)
+	$LabelCustom.text = str(beat_number)
 
 
 func _process(delta: float) -> void:
 	_radius -= delta * (_radius_start - _radius_perfect) * _speed
-	update()
 
 	if _radius <= _radius_perfect - _offset_perfect:
 		_touch_area.collision_layer = 0
@@ -77,4 +76,4 @@ func _on_Area2D_input_event(_viewport, event, _shape_idx) -> void:
 		Events.emit_signal("scored", {"score": _get_score(), "position": global_position})
 		_beat_hit = true
 		_touch_area.collision_layer = 0
-		_animation_player.play("hide")
+		_animation_player.play("destroy")

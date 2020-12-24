@@ -11,7 +11,7 @@ func _ready():
 
 
 func _pulse(msg: Dictionary):
-	if msg.beat_number % 2 == 1:
+	if msg.half_beat % 2 == 1:
 		return
 
 	var _beats_per_second: float = msg.bps

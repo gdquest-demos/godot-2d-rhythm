@@ -24,7 +24,7 @@ func _ready() -> void:
 
 
 func _spawn_beat(msg: Dictionary) -> void:
-	if not enabled or msg.beat_number <= _delay_start:
+	if not enabled or msg.half_beat <= _delay_start:
 		return
 
 	if _track_current.empty():
@@ -59,7 +59,7 @@ func _load_tracks() -> void:
 				# Add additional rests if needed
 				for _i in range(beat_data.beat_duration - 1):
 					_tracks[track.name]["beats"].append({})
-
+	
 	patterns.queue_free()
 
 
