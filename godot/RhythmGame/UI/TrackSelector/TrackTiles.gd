@@ -62,7 +62,6 @@ func scroll(amount: Vector2) -> void:
 	_tween.stop_all()
 	position.x = clamp(position.x + amount.x, _bound.right, _bound.left)
 	_update_tile_visuals()
-	_align_timer.start()
 
 
 func _update_tile_visuals() -> void:

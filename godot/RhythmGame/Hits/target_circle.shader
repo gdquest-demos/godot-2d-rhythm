@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform float torus_thickness : hint_range(0.001, 1.0) = 0.03;
+uniform float torus_thickness : hint_range(0.001, 1.0) = 0.015;
 uniform float torus_hardness = -2.0;
 uniform float torus_radius = 0.5;
 

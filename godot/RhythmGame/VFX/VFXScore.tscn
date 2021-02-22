@@ -64,7 +64,7 @@ damping = 256.0
 scale = 0.2
 scale_curve = SubResource( 3 )
 
-[node name="Score" type="Position2D"]
+[node name="VFXScore" type="Position2D"]
 z_index = -3
 script = ExtResource( 1 )
 
