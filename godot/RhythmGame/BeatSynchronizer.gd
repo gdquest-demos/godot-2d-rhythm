@@ -29,7 +29,7 @@ func _process(_delta: float) -> void:
 	)
 	
 	var half_beat := int(time / _hbps)
-
+	
 	if half_beat > _last_half_beat:
 		_last_half_beat = half_beat
 		Events.emit_signal("beat_incremented", {"half_beat" : half_beat, "bps": _bps})

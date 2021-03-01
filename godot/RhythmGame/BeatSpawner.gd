@@ -7,7 +7,6 @@ export var hit_roller: PackedScene
 
 var _tracks = {}
 var _track_current = []
-var _delay_start := 0
 
 onready var scenes = {
 	"hit_beat": hit_beat, 
@@ -24,7 +23,7 @@ func _ready() -> void:
 
 
 func _spawn_beat(msg: Dictionary) -> void:
-	if not enabled or msg.half_beat <= _delay_start:
+	if not enabled:
 		return
 
 	if _track_current.empty():
@@ -47,7 +46,7 @@ func _spawn_beat(msg: Dictionary) -> void:
 
 func _load_tracks() -> void:
 	for track in patterns.get_children():
-		_tracks[track.name] = {"delay_start": track.delay_start, "beats": []}
+		_tracks[track.name] = {"beats": []}
 
 		for bar in track.get_children():
 			var sprite_frame := int(rand_range(0, 5))
@@ -65,4 +64,3 @@ func _load_tracks() -> void:
 
 func _select_track(msg: Dictionary) -> void:
 	_track_current = _tracks[msg.name].beats
-	_delay_start = _tracks[msg.name].delay_start
