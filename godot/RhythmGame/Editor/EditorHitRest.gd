@@ -1,24 +1,24 @@
 tool
 extends Node2D
 
-export (int, 1, 4) var half_beats := 2 setget set_half_beats
+export (int, 1, 4) var duration := 2 setget set_duration
 
-var _beat_number := 1
+var _order_number := 1
 
 
 func _enter_tree() -> void:
-	_beat_number = get_index() + 1
-	$BeatNumber.text = str(_beat_number)
+	_order_number = get_index() + 1
+	$BeatNumber.text = str(_order_number)
 
 
-func _draw():
+func _draw() -> void:
 	draw_circle(Vector2.ZERO, 75.0, Color.black)
 
 
 func get_data() -> Dictionary:
-	return {beat_duration = half_beats}
+	return {duration = duration}
 
 
-func set_half_beats(amount : int) -> void:
-	half_beats = amount
-	$Sprite.frame = half_beats - 1
+func set_duration(amount : int) -> void:
+	duration = amount
+	$Sprite.frame = duration - 1

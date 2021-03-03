@@ -34,11 +34,11 @@ __meta__ = {
 
 [node name="EditorHitRest" parent="Intro" instance=ExtResource( 1 )]
 position = Vector2( 192, 192 )
-half_beats = 4
+duration = 4
 
 [node name="EditorHitRest2" parent="Intro" instance=ExtResource( 1 )]
 position = Vector2( 384, 192 )
-half_beats = 3
+duration = 3
 
 [node name="0" type="Node2D" parent="."]
 __meta__ = {
@@ -59,19 +59,19 @@ position = Vector2( 768, 192 )
 
 [node name="EditorHitBeat4" parent="0" instance=ExtResource( 4 )]
 position = Vector2( 864, 288 )
-half_beats = 3
+duration = 3
 
 [node name="EditorHitBeat5" parent="0" instance=ExtResource( 4 )]
 position = Vector2( 1056, 288 )
-half_beats = 1
+duration = 1
 
 [node name="EditorHitBeat6" parent="0" instance=ExtResource( 4 )]
 position = Vector2( 1152, 384 )
-half_beats = 1
+duration = 1
 
 [node name="EditorHitRest2" parent="0" instance=ExtResource( 1 )]
 position = Vector2( 1248, 480 )
-half_beats = 1
+duration = 1
 
 [node name="EditorHitBeat7" parent="0" instance=ExtResource( 4 )]
 position = Vector2( 1152, 576 )
@@ -87,11 +87,11 @@ position = Vector2( 960, 672 )
 
 [node name="EditorHitBeat2" parent="1" instance=ExtResource( 4 )]
 position = Vector2( 768, 672 )
-half_beats = 1
+duration = 1
 
 [node name="EditorHitBeat3" parent="1" instance=ExtResource( 4 )]
 position = Vector2( 672, 576 )
-half_beats = 1
+duration = 1
 
 [node name="EditorHitBeat4" parent="1" instance=ExtResource( 4 )]
 position = Vector2( 576, 672 )
@@ -99,7 +99,7 @@ position = Vector2( 576, 672 )
 [node name="EditorHitRoller" parent="1" instance=ExtResource( 5 )]
 position = Vector2( 480, 576 )
 curve = SubResource( 1 )
-half_beats = 2
+duration = 2
 
 [node name="EditorHitRest" parent="1" instance=ExtResource( 1 )]
 position = Vector2( 288, 480 )
@@ -110,7 +110,7 @@ position = Vector2( 192, 384 )
 [node name="EditorHitRoller2" parent="1" instance=ExtResource( 5 )]
 position = Vector2( 192, 192 )
 curve = SubResource( 2 )
-half_beats = 2
+duration = 2
 
 [node name="EditorHitRest2" parent="1" instance=ExtResource( 1 )]
 position = Vector2( 480, 288 )
@@ -126,11 +126,11 @@ position = Vector2( 672, 192 )
 
 [node name="EditorHitBeat2" parent="2" instance=ExtResource( 4 )]
 position = Vector2( 864, 288 )
-half_beats = 1
+duration = 1
 
 [node name="EditorHitBeat3" parent="2" instance=ExtResource( 4 )]
 position = Vector2( 960, 192 )
-half_beats = 1
+duration = 1
 
 [node name="EditorHitBeat4" parent="2" instance=ExtResource( 4 )]
 position = Vector2( 1056, 288 )
@@ -138,7 +138,7 @@ position = Vector2( 1056, 288 )
 [node name="EditorHitRoller" parent="2" instance=ExtResource( 5 )]
 position = Vector2( 1152, 192 )
 curve = SubResource( 3 )
-half_beats = 2
+duration = 2
 
 [node name="EditorHitRest" parent="2" instance=ExtResource( 1 )]
 position = Vector2( 1248, 576 )
@@ -163,11 +163,11 @@ position = Vector2( 384, 576 )
 
 [node name="EditorHitBeat2" parent="3" instance=ExtResource( 4 )]
 position = Vector2( 288, 384 )
-half_beats = 1
+duration = 1
 
 [node name="EditorHitBeat3" parent="3" instance=ExtResource( 4 )]
 position = Vector2( 192, 480 )
-half_beats = 1
+duration = 1
 
 [node name="EditorHitBeat4" parent="3" instance=ExtResource( 4 )]
 position = Vector2( 96, 384 )
@@ -175,23 +175,23 @@ position = Vector2( 96, 384 )
 [node name="EditorHitRoller" parent="3" instance=ExtResource( 5 )]
 position = Vector2( 96, 192 )
 curve = SubResource( 4 )
-half_beats = 2
+duration = 2
 
 [node name="EditorHitRest" parent="3" instance=ExtResource( 1 )]
 position = Vector2( 480, 288 )
-half_beats = 1
+duration = 1
 
 [node name="EditorHitBeat5" parent="3" instance=ExtResource( 4 )]
 position = Vector2( 576, 288 )
-half_beats = 1
+duration = 1
 
 [node name="EditorHitBeat6" parent="3" instance=ExtResource( 4 )]
 position = Vector2( 672, 192 )
-half_beats = 1
+duration = 1
 
 [node name="EditorHitBeat7" parent="3" instance=ExtResource( 4 )]
 position = Vector2( 768, 288 )
-half_beats = 1
+duration = 1
 
 [node name="EditorHitBeat8" parent="3" instance=ExtResource( 4 )]
 position = Vector2( 864, 192 )

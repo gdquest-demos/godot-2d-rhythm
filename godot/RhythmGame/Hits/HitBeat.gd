@@ -8,7 +8,7 @@ var _offset_perfect := 4
 var _offset_great := 8
 var _offset_ok := 16
 
-var beat_number := 0 setget set_beat_number
+var order_number := 0 setget set_order_number
 
 var _beat_hit := false
 var _beat_delay := 4.0  #beats before perfect
@@ -30,7 +30,7 @@ func _ready() -> void:
 
 
 func setup(data: Dictionary) -> void:
-	self.beat_number = data.beat_number
+	self.order_number = data.order_number
 	
 	_speed = 1.0 / data.bps / _beat_delay
 
@@ -42,9 +42,9 @@ func setup(data: Dictionary) -> void:
 	_target_circle.global_position = global_position
 
 
-func set_beat_number(number: int) -> void:
-	beat_number = number
-	_label.text = str(beat_number)
+func set_order_number(number: int) -> void:
+	order_number = number
+	_label.text = str(order_number)
 
 
 func _process(delta: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://RhythmGameDemo.gd" type="Script" id=1]
 [ext_resource path="res://RhythmGame/BeatSpawner.gd" type="Script" id=2]
@@ -9,8 +9,6 @@
 [ext_resource path="res://RhythmGame/BeatSynchronizer.gd" type="Script" id=7]
 [ext_resource path="res://RhythmGame/UI/TrackSelector/UITrackSelector.tscn" type="PackedScene" id=8]
 [ext_resource path="res://RhythmGame/VFX/VFXScore.tscn" type="PackedScene" id=9]
-[ext_resource path="res://RhythmGame/Hits/HitRoller.tscn" type="PackedScene" id=10]
-[ext_resource path="res://RhythmGame/Hits/HitBeat.tscn" type="PackedScene" id=11]
 [ext_resource path="res://RhythmGame/UI/background_shapes.png" type="Texture" id=12]
 
 [node name="RhythmGameDemo" type="Node2D"]
@@ -32,8 +30,6 @@ stream = ExtResource( 4 )
 
 [node name="BeatSpawner" type="Node" parent="."]
 script = ExtResource( 2 )
-hit_beat = ExtResource( 11 )
-hit_roller = ExtResource( 10 )
 
 [node name="Patterns" parent="BeatSpawner" instance=ExtResource( 5 )]
 visible = false

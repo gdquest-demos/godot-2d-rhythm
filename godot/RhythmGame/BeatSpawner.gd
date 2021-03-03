@@ -2,16 +2,8 @@ extends Node
 
 export var enabled := true
 
-export var hit_beat: PackedScene
-export var hit_roller: PackedScene
-
 var _tracks = {}
 var _track_current = []
-
-onready var scenes = {
-	"hit_beat": hit_beat, 
-	"hit_roller": hit_roller
-}
 
 onready var patterns = $Patterns
 
@@ -38,7 +30,7 @@ func _spawn_beat(msg: Dictionary) -> void:
 
 	beat.bps = msg.bps
 
-	var new_beat: Node = scenes[beat.scene].instance()
+	var new_beat: Node = beat.scene.instance()
 	add_child(new_beat)
 
 	new_beat.setup(beat)
@@ -56,7 +48,7 @@ func _load_tracks() -> void:
 				_tracks[track.name]["beats"].append(beat_data)
 
 				# Add additional rests if needed
-				for _i in range(beat_data.beat_duration - 1):
+				for _i in range(beat_data.duration - 1):
 					_tracks[track.name]["beats"].append({})
 	
 	patterns.queue_free()

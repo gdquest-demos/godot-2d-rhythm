@@ -1,8 +1,8 @@
 extends Path2D
 
-var beat_number := 0 setget set_beat_number
+var order_number := 0 setget set_order_number
 
-var _beat_duration := 2.0
+var _duration := 2.0
 var _bps := 0.0
 var _beat_delay := 4.0  #beats before roller start
 var _speed := 0.0
@@ -39,7 +39,7 @@ func _ready() -> void:
 	yield(_start_timer, "timeout")
 	_moving = true
 	_roller.find_node("AnimationPlayer").play("show")
-	_score_timer.start(_bps * _beat_duration / _segments / 2.0)
+	_score_timer.start(_bps * _duration / _segments / 2.0)
 
 
 func _process(delta: float) -> void:
@@ -53,9 +53,9 @@ func _process(delta: float) -> void:
 
 
 func setup(data: Dictionary) -> void:
-	self.beat_number = data.beat_number
+	self.order_number = data.order_number
 
-	_beat_duration = data.beat_duration
+	_duration = data.duration
 
 	if data.has("curve"):
 		curve = data.curve
@@ -68,7 +68,7 @@ func setup(data: Dictionary) -> void:
 	_path_end = _roller_line.path_points[_roller_line.path_points.size() - 1]
 
 	_bps = data.bps
-	_speed = 2.0 / _bps / _beat_duration
+	_speed = 2.0 / _bps / _duration
 
 	_sprite_first.position = _path_start
 	_sprite_second.position = _path_end
@@ -83,9 +83,9 @@ func setup(data: Dictionary) -> void:
 	_target_circle.global_position = to_global(_path_start)
 
 
-func set_beat_number(number: int) -> void:
+func set_order_number(number: int) -> void:
 	_label_first.text = str(number)
-	beat_number = number
+	order_number = number
 	_label_second.text = str(number + 1)
 
 
