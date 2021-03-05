@@ -12,4 +12,4 @@ texture = ExtResource( 2 )
 hframes = 4
 frame = 1
 
-[node name="BeatNumber" parent="." instance=ExtResource( 3 )]
+[node name="OrderNumber" parent="." instance=ExtResource( 3 )]

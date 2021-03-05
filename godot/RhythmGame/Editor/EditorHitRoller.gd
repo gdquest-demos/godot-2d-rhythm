@@ -10,7 +10,7 @@ var _order_number := 1
 func _enter_tree() -> void:
 	_order_number = get_index() + 1
 
-	$BeatNumber.text = str(_order_number)
+	$OrderNumber.text = str(_order_number)
 	$Sprite.global_position = to_global(curve.get_point_position(0))
 
 
