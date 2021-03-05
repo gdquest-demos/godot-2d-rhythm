@@ -1,5 +1,6 @@
 tool
-extends Position2D
+extends Node2D
+class_name PlacerHitBeat, "res://RhythmGame/Editor/placer_hit_beat_icon.svg"
 
 export (PackedScene) var scene
 export (int, 1, 4) var duration := 2 setget set_duration

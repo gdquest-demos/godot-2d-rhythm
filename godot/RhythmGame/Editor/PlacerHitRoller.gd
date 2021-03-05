@@ -1,5 +1,6 @@
 tool
 extends Path2D
+class_name PlacerRoller, "res://RhythmGame/Editor/placer_hit_roller_icon.svg"
 
 export (PackedScene) var scene
 export (int, 1, 4) var duration := 4 setget set_duration
