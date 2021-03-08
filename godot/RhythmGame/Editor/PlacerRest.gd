@@ -12,10 +12,6 @@ func _enter_tree() -> void:
 	$OrderNumber.text = str(_order_number)
 
 
-func _draw() -> void:
-	draw_circle(Vector2.ZERO, 75.0, Color.black)
-
-
 func get_data() -> Dictionary:
 	return {duration = duration}
 

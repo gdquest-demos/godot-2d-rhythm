@@ -10,7 +10,7 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -0.25, 0, 0, 0, 0, 0, 219, 0 )
 }
 
-[node name="EditorHitRoller" type="Path2D"]
+[node name="PlacerHitRoller" type="Path2D"]
 self_modulate = Color( 1, 1, 1, 1 )
 curve = SubResource( 1 )
 script = ExtResource( 2 )

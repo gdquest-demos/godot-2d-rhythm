@@ -31,7 +31,6 @@ func get_data() -> Dictionary:
 
 
 func _draw() -> void:
-	draw_circle(curve.get_point_position(0), 75.0, Color.black)
 	draw_circle(curve.get_point_position(curve.get_point_count() - 1), 75.0, Color.black)
 
 
