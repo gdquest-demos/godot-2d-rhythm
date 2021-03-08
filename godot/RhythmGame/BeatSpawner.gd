@@ -11,7 +11,7 @@ onready var patterns = $Patterns
 func _ready() -> void:
 	Events.connect("beat_incremented", self, "_spawn_beat")
 	Events.connect("track_selected", self, "_select_stack")
-	_load_tracks()
+	_generate_stacks()
 
 
 func _spawn_beat(msg: Dictionary) -> void:
@@ -36,23 +36,25 @@ func _spawn_beat(msg: Dictionary) -> void:
 	new_beat.setup(hit_beat_data)
 
 
-func _load_tracks() -> void:
-	for track in patterns.get_children():
-		_stacks[track.name] = {"beats": []}
+func _generate_stacks() -> void:
+	for pattern in patterns.get_children():
+		
+		_stacks[pattern.name] = {"stack": []}
 
-		for bar in track.get_children():
+		for chunk in pattern.get_children():
 			var sprite_frame := int(rand_range(0, 5))
-			for beat in bar.get_children():
-				var hit_beat_data: Dictionary = beat.get_data()
+			
+			for placer in chunk.get_children():
+				var hit_beat_data: Dictionary = placer.get_data()
 				hit_beat_data.color = sprite_frame
-				_stacks[track.name]["beats"].append(hit_beat_data)
+				_stacks[pattern.name]["stack"].append(hit_beat_data)
 
 				# Add additional rests if needed
 				for _i in range(hit_beat_data.duration - 1):
-					_stacks[track.name]["beats"].append({})
+					_stacks[pattern.name]["stack"].append({})
 	
 	patterns.queue_free()
 
 
 func _select_stack(msg: Dictionary) -> void:
-	_stack_current = _stacks[msg.name].beats
+	_stack_current = _stacks[msg.name].stack
