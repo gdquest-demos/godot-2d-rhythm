@@ -39,7 +39,7 @@ func _spawn_beat(msg: Dictionary) -> void:
 func _generate_stacks() -> void:
 	for pattern in patterns.get_children():
 		
-		_stacks[pattern.name] = {"stack": []}
+		_stacks[pattern.name] = []
 
 		for chunk in pattern.get_children():
 			var sprite_frame := int(rand_range(0, 5))
@@ -47,14 +47,14 @@ func _generate_stacks() -> void:
 			for placer in chunk.get_children():
 				var hit_beat_data: Dictionary = placer.get_data()
 				hit_beat_data.color = sprite_frame
-				_stacks[pattern.name]["stack"].append(hit_beat_data)
+				_stacks[pattern.name].append(hit_beat_data)
 
 				# Add additional rests if needed
 				for _i in range(hit_beat_data.duration - 1):
-					_stacks[pattern.name]["stack"].append({})
+					_stacks[pattern.name].append({})
 	
 	patterns.queue_free()
 
 
 func _select_stack(msg: Dictionary) -> void:
-	_stack_current = _stacks[msg.name].stack
+	_stack_current = _stacks[msg.name]
