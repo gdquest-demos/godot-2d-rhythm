@@ -25,7 +25,7 @@ func _spawn_beat(msg: Dictionary) -> void:
 
 	var hit_beat_data: Dictionary = _stack_current.pop_front()
 
-	if not hit_beat_data.has("scene"):
+	if not hit_beat_data.has("global_position"):
 		return
 
 	hit_beat_data.bps = msg.bps
@@ -42,7 +42,7 @@ func _generate_stacks() -> void:
 		_stacks[pattern.name] = []
 
 		for chunk in pattern.get_children():
-			var sprite_frame := int(rand_range(0, 5))
+			var sprite_frame := round(rand_range(0, 5))
 			
 			for placer in chunk.get_children():
 				var hit_beat_data: Dictionary = placer.get_data()
