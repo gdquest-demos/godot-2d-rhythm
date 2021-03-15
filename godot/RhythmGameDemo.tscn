@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://RhythmGameDemo.gd" type="Script" id=1]
-[ext_resource path="res://RhythmGame/BeatSpawner.gd" type="Script" id=2]
+[ext_resource path="res://RhythmGame/HitSpawner.gd" type="Script" id=2]
 [ext_resource path="res://RhythmGame/UI/TrackFinished/UITrackFinished.tscn" type="PackedScene" id=3]
 [ext_resource path="res://RhythmGame/Tracks/Cephalopod/Cephalopod.ogg" type="AudioStream" id=4]
 [ext_resource path="res://RhythmGame/Editor/Patterns.tscn" type="PackedScene" id=5]
 [ext_resource path="res://RhythmGame/UI/TrackPlaying/UITrackPlaying.tscn" type="PackedScene" id=6]
-[ext_resource path="res://RhythmGame/BeatSynchronizer.gd" type="Script" id=7]
+[ext_resource path="res://RhythmGame/Synchronizer.gd" type="Script" id=7]
 [ext_resource path="res://RhythmGame/UI/TrackSelector/UITrackSelector.tscn" type="PackedScene" id=8]
 [ext_resource path="res://RhythmGame/VFX/VFXScore.tscn" type="PackedScene" id=9]
 [ext_resource path="res://RhythmGame/UI/background_shapes.png" type="Texture" id=12]
@@ -22,16 +22,16 @@ layer = -20
 texture = ExtResource( 12 )
 centered = false
 
-[node name="BeatSynchronizer" type="Node" parent="."]
+[node name="Synchronizer" type="Node" parent="."]
 script = ExtResource( 7 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BeatSynchronizer"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Synchronizer"]
 stream = ExtResource( 4 )
 
-[node name="BeatSpawner" type="Node" parent="."]
+[node name="HitSpawner" type="Node" parent="."]
 script = ExtResource( 2 )
 
-[node name="Patterns" parent="BeatSpawner" instance=ExtResource( 5 )]
+[node name="Patterns" parent="HitSpawner" instance=ExtResource( 5 )]
 visible = false
 
 [node name="UI" type="CanvasLayer" parent="."]
