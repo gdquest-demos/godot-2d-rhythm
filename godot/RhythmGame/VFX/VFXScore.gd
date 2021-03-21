@@ -13,7 +13,8 @@ func _ready() -> void:
 	set_as_toplevel(true)
 
 
-func set_score(score : int) -> void:
+func setup(global_pos: Vector2, score : int) -> void:
+	global_position = global_pos
 	if score >= 10:
 		_sprite.frame = FRAME_PERFECT
 		_particles.emitting = true
@@ -21,4 +22,3 @@ func set_score(score : int) -> void:
 		_sprite.frame = FRAME_GREAT
 	elif score >= 3:
 		_sprite.frame = FRAME_OK
-
