@@ -79,7 +79,7 @@ func setup(data: Dictionary) -> void:
 
 	_start_timer.start(_bps * _beat_delay)
 
-	_target_circle.set_up(_radius_start, _radius_perfect, _bps, _beat_delay)
+	_target_circle.setup(_radius_start, _radius_perfect, _bps, _beat_delay)
 	_target_circle.global_position = to_global(_path_start)
 
 

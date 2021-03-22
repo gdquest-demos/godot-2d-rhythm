@@ -1,50 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://RhythmGame/Hits/TargetCircle.gd" type="Script" id=1]
 [ext_resource path="res://RhythmGame/Hits/target_circle.shader" type="Shader" id=2]
 
-[sub_resource type="Animation" id=1]
-resource_name = "destroy"
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "queue_free"
-} ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:shrink_speed")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
 shader_param/torus_thickness = 0.015
 shader_param/torus_hardness = -5.0
@@ -55,11 +14,8 @@ modulate = Color( 0.466667, 0.490196, 0.52549, 0.54902 )
 z_index = -1
 script = ExtResource( 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/destroy = SubResource( 1 )
-
 [node name="TargetCircle" type="ColorRect" parent="."]
-material = SubResource( 2 )
+material = SubResource( 1 )
 margin_left = -150.0
 margin_top = -150.0
 margin_right = 150.0

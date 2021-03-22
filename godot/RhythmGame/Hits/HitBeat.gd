@@ -38,7 +38,7 @@ func setup(data: Dictionary) -> void:
 
 	_sprite.frame = data.color
 
-	_target_circle.set_up(_radius_start, _radius_perfect, data.bps, _beat_delay)
+	_target_circle.setup(_radius_start, _radius_perfect, data.bps, _beat_delay)
 	_target_circle.global_position = global_position
 
 
