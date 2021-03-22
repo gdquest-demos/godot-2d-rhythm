@@ -171,6 +171,7 @@ hframes = 6
 [node name="LabelSecondBeat" parent="SecondBeatSprite" instance=ExtResource( 6 )]
 
 [node name="RollerPath" type="PathFollow2D" parent="."]
+position = Vector2( -0.411484, 0.919983 )
 rotate = false
 loop = false
 
@@ -199,6 +200,7 @@ anims/show = SubResource( 6 )
 one_shot = true
 
 [node name="TargetCircle" parent="." instance=ExtResource( 2 )]
+
 [connection signal="timeout" from="RollerLine2D/Timer" to="RollerLine2D" method="_on_Timer_timeout"]
 [connection signal="input_event" from="RollerPath/Roller" to="." method="_on_Area2D_input_event"]
 [connection signal="mouse_entered" from="RollerPath/Roller" to="." method="_on_Area2D_mouse_entered"]
