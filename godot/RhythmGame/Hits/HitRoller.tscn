@@ -145,6 +145,8 @@ self_modulate = Color( 1, 1, 1, 1 )
 curve = SubResource( 1 )
 script = ExtResource( 1 )
 
+[node name="TargetCircle" parent="." instance=ExtResource( 2 )]
+
 [node name="RollerLine2D" type="Line2D" parent="."]
 width = 0.0
 default_color = Color( 0.466667, 0.490196, 0.52549, 0.54902 )
@@ -198,8 +200,6 @@ anims/show = SubResource( 6 )
 
 [node name="StartTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="TargetCircle" parent="." instance=ExtResource( 2 )]
 
 [connection signal="timeout" from="RollerLine2D/Timer" to="RollerLine2D" method="_on_Timer_timeout"]
 [connection signal="input_event" from="RollerPath/Roller" to="." method="_on_Area2D_input_event"]
