@@ -4,6 +4,7 @@
 [ext_resource path="res://RhythmGame/Hits/target_circle.shader" type="Shader" id=2]
 
 [sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/torus_thickness = 0.015
 shader_param/torus_hardness = -5.0

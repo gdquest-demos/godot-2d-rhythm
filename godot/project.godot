@@ -9,12 +9,36 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "Dragger",
+"language": "GDScript",
+"path": "res://RhythmGame/UI/TrackSelector/DragDetector.gd"
+}, {
+"base": "Node2D",
+"class": "PlacerHitBeat",
+"language": "GDScript",
+"path": "res://RhythmGame/Editor/PlacerHitBeat.gd"
+}, {
+"base": "Node2D",
+"class": "PlacerRest",
+"language": "GDScript",
+"path": "res://RhythmGame/Editor/PlacerRest.gd"
+}, {
+"base": "Path2D",
+"class": "PlacerRoller",
+"language": "GDScript",
+"path": "res://RhythmGame/Editor/PlacerHitRoller.gd"
+}, {
 "base": "Resource",
 "class": "TrackData",
 "language": "GDScript",
 "path": "res://RhythmGame/Tracks/TrackData.gd"
 } ]
 _global_script_class_icons={
+"Dragger": "",
+"PlacerHitBeat": "res://RhythmGame/Editor/placer_hit_beat_icon.svg",
+"PlacerRest": "res://RhythmGame/Editor/placer_rest_icon.svg",
+"PlacerRoller": "res://RhythmGame/Editor/placer_hit_roller_icon.svg",
 "TrackData": ""
 }
 

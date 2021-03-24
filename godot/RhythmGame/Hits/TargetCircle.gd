@@ -25,7 +25,6 @@ func setup(radius_start: float, radius_end: float, bps: float, beat_delay: float
 	margin_bottom = _radius
 
 	rect_size = Vector2.ONE * _radius * 2
-	material = material.duplicate()
 
 	set_process(true)
 
