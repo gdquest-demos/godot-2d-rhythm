@@ -14,21 +14,8 @@ onready var _tween := $Tween
 
 
 func _ready() -> void:
-	for track_data in tracks:
-		var track_tile: TrackTile = track_tile_scene.instance()
-		track_tile.track_data = track_data
-		_track_tiles.append(track_tile)
-		add_child(track_tile)
-
-	var current_separation := 0.0
-
-	for track in _track_tiles:
-		track.position = Vector2(current_separation, 0)
-		current_separation += separation
-
+	_generate_tiles()
 	_update_tile_visuals()
-
-	_bound.right = -(separation * (_track_tiles.size() - 1))
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -62,6 +49,23 @@ func scroll(amount: Vector2) -> void:
 	_tween.stop_all()
 	position.x = clamp(position.x + amount.x, _bound.right, _bound.left)
 	_update_tile_visuals()
+
+
+func _generate_tiles() -> void:
+	var separation_current := 0.0
+
+	for i in tracks.size():
+		var track_data: TrackData = tracks[i]
+		var track_tile: TrackTile = track_tile_scene.instance()
+
+		track_tile.track_data = track_data
+		_track_tiles.append(track_tile)
+
+		track_tile.position = Vector2(separation_current, 0)
+		separation_current += separation
+		add_child(track_tile)
+
+	_bound.right = -(separation * (_track_tiles.size() - 1))
 
 
 func _update_tile_visuals() -> void:
