@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "TrackData",
 "language": "GDScript",
 "path": "res://RhythmGame/Tracks/TrackData.gd"
+}, {
+"base": "Area2D",
+"class": "TrackTile",
+"language": "GDScript",
+"path": "res://RhythmGame/UI/TrackSelector/TrackTile.gd"
 } ]
 _global_script_class_icons={
 "Dragger": "",
 "PlacerHitBeat": "res://RhythmGame/Editor/placer_hit_beat_icon.svg",
 "PlacerRest": "res://RhythmGame/Editor/placer_rest_icon.svg",
 "PlacerRoller": "res://RhythmGame/Editor/placer_hit_roller_icon.svg",
-"TrackData": ""
+"TrackData": "",
+"TrackTile": ""
 }
 
 [application]
@@ -56,7 +62,6 @@ Events="*res://RhythmGame/Autoload/Events.gd"
 
 window/size/width=1920
 window/size/height=1080
-window/size/fullscreen=true
 window/vsync/use_vsync=false
 window/stretch/mode="2d"
 window/stretch/aspect="keep"

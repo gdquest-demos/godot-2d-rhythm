@@ -5,7 +5,7 @@ export var separation := 450
 export (Array, Resource) var tracks: Array
 export var track_tile_scene: PackedScene
 
-var _selected_track_tile = null
+var _selected_track_tile: TrackTile
 var _track_tiles := []
 var _bound := {"left": 0, "right": 0}
 
@@ -14,9 +14,9 @@ onready var _tween := $Tween
 
 
 func _ready() -> void:
-	for track in tracks:
-		var track_tile = track_tile_scene.instance()
-		track_tile.info = track
+	for track_data in tracks:
+		var track_tile: TrackTile = track_tile_scene.instance()
+		track_tile.setup(track_data)
 		_track_tiles.append(track_tile)
 		add_child(track_tile)
 
@@ -31,19 +31,19 @@ func _ready() -> void:
 	_bound.right = -(separation * (_track_tiles.size() - 1))
 
 
-func _input(event) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("touch"):
 		_align_timer.start()
 		yield(_align_timer, "timeout")
 		_snap_to_track(_selected_track_tile)
 
 
-func _process(_delta) -> void:
+func _process(_delta: float) -> void:
 	if _tween.is_active():
 		_update_tile_visuals()
 
 
-func _snap_to_track(track_tile) -> void:
+func _snap_to_track(track_tile: TrackTile) -> void:
 	var relative_position = track_tile.global_position.x - get_parent().global_position.x
 
 	_tween.interpolate_property(
@@ -65,11 +65,11 @@ func scroll(amount: Vector2) -> void:
 
 
 func _update_tile_visuals() -> void:
-	var distance_scale
-	var distance_fade
-	for tile in _track_tiles:
+	var distance_scale: float
+	var distance_fade: float
+	for track_tile in _track_tiles:
 		var distance_normalized = range_lerp(
-			abs(tile.global_position.x - get_parent().global_position.x),
+			abs(track_tile.global_position.x - get_parent().global_position.x),
 			0,
 			get_parent().global_position.x,
 			0,
@@ -77,11 +77,15 @@ func _update_tile_visuals() -> void:
 		)
 
 		distance_scale = 1.0 - distance_normalized
-		tile.scale = Vector2.ONE * distance_scale
+		track_tile.scale = Vector2.ONE * distance_scale
 
 		distance_fade = distance_normalized
-		tile.modulate.a = (1 - pow(distance_fade, 3))
+		track_tile.modulate.a = (1 - pow(distance_fade, 3))
 
 
-func _on_track_selected(track_tile) -> void:
+func _on_track_selected(track_tile: TrackTile) -> void:
 	_selected_track_tile = track_tile
+
+
+func _on_DragDetector_dragged(amount: Vector2) -> void:
+	scroll(amount)

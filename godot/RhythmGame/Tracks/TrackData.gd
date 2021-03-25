@@ -8,5 +8,5 @@ export var icon: Texture
 export var artist := "Artist"
 
 
-func get_data() -> Dictionary:
+func as_dict() -> Dictionary:
 	return {"name": label, "stream": stream, "bpm": bpm, "icon": icon, "artist": artist}

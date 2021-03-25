@@ -1,11 +1,13 @@
+class_name TrackTile
 extends Area2D
 
-export var info: Resource
+var _data: TrackData
 
 
-func _ready():
-	$Sprite.texture = info.icon
+func setup(track_data: TrackData):
+	_data = track_data
+	$Sprite.texture = _data.icon
 
 
-func get_data() -> Dictionary:
-	return info.get_data()
+func get_data() -> TrackData:
+	return _data

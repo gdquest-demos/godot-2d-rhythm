@@ -20,6 +20,7 @@ extents = Vector2( 960, 270 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "fade_in_track"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("AudioStreamPlayer:volume_db")
 tracks/0/interp = 1
@@ -27,14 +28,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.420448, 1 ),
-"update": 0,
-"values": [ -80.0, -12.0 ]
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ -12.0 ]
 }
 
 [sub_resource type="Animation" id=4]
 resource_name = "fade_out_track"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("AudioStreamPlayer:volume_db")
 tracks/0/interp = 1
@@ -42,10 +44,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.42, 1 ),
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -12.0, -80.0 ]
+"values": [ -80.0 ]
 }
 
 [node name="UITrackSelector" type="Control"]
@@ -119,10 +121,11 @@ volume_db = -80.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/fade_in_track = SubResource( 3 )
 anims/fade_out_track = SubResource( 4 )
+
 [connection signal="area_entered" from="SelectArea" to="SelectArea" method="_on_area_entered"]
-[connection signal="track_selected" from="SelectArea" to="." method="update_track_info"]
 [connection signal="track_selected" from="SelectArea" to="TrackCarousel/TrackTiles" method="_on_track_selected"]
-[connection signal="dragged" from="TrackCarousel/DragDetector" to="TrackCarousel/TrackTiles" method="scroll"]
+[connection signal="track_selected" from="SelectArea" to="." method="update_track_info"]
+[connection signal="dragged" from="TrackCarousel/DragDetector" to="TrackCarousel/TrackTiles" method="_on_DragDetector_dragged"]
 [connection signal="input_event" from="TrackCarousel/DragDetector" to="TrackCarousel/DragDetector" method="_on_input_event"]
 [connection signal="mouse_exited" from="TrackCarousel/DragDetector" to="TrackCarousel/DragDetector" method="_on_mouse_exited"]
 [connection signal="pressed" from="GoButton" to="." method="_on_GoButton_pressed"]
