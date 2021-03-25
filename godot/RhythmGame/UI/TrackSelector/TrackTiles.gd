@@ -16,11 +16,11 @@ onready var _tween := $Tween
 func _ready() -> void:
 	for track_data in tracks:
 		var track_tile: TrackTile = track_tile_scene.instance()
-		track_tile.setup(track_data)
+		track_tile.track_data = track_data
 		_track_tiles.append(track_tile)
 		add_child(track_tile)
 
-	var current_separation = 0.0
+	var current_separation := 0.0
 
 	for track in _track_tiles:
 		track.position = Vector2(current_separation, 0)

@@ -8,7 +8,7 @@ onready var _animation_player := $AnimationPlayer
 
 
 func update_track_info(track_tile) -> void:
-	_current_track_data = track_tile.get_data()
+	_current_track_data = track_tile.track_data
 	_track_name.text = _current_track_data.label
 
 	_animation_player.play("fade_out_track")
