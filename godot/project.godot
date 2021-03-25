@@ -10,7 +10,7 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Area2D",
-"class": "Dragger",
+"class": "DragDetector",
 "language": "GDScript",
 "path": "res://RhythmGame/UI/TrackSelector/DragDetector.gd"
 }, {
@@ -40,7 +40,7 @@ _global_script_classes=[ {
 "path": "res://RhythmGame/UI/TrackSelector/TrackTile.gd"
 } ]
 _global_script_class_icons={
-"Dragger": "",
+"DragDetector": "",
 "PlacerHitBeat": "res://RhythmGame/Editor/placer_hit_beat_icon.svg",
 "PlacerRest": "res://RhythmGame/Editor/placer_rest_icon.svg",
 "PlacerRoller": "res://RhythmGame/Editor/placer_hit_roller_icon.svg",

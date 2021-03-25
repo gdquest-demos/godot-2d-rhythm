@@ -127,5 +127,4 @@ anims/fade_out_track = SubResource( 4 )
 [connection signal="track_selected" from="SelectArea" to="." method="update_track_info"]
 [connection signal="dragged" from="TrackCarousel/DragDetector" to="TrackCarousel/TrackTiles" method="_on_DragDetector_dragged"]
 [connection signal="input_event" from="TrackCarousel/DragDetector" to="TrackCarousel/DragDetector" method="_on_input_event"]
-[connection signal="mouse_exited" from="TrackCarousel/DragDetector" to="TrackCarousel/DragDetector" method="_on_mouse_exited"]
 [connection signal="pressed" from="GoButton" to="." method="_on_GoButton_pressed"]
