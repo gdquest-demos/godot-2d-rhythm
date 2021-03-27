@@ -70,7 +70,11 @@ func _generate_tiles() -> void:
 func _update_tile_visuals() -> void:
 	var distance_scale: float
 	var distance_fade: float
+	var expanded_view_bounds := get_viewport_rect().grow(200.0)
 	for track_tile in _track_tiles:
+		if not expanded_view_bounds.has_point(track_tile.global_position):
+			continue
+
 		var distance_normalized = range_lerp(
 			abs(track_tile.global_position.x - get_parent().global_position.x),
 			0,
