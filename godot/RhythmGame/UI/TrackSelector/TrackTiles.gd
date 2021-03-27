@@ -28,13 +28,15 @@ func _process(_delta: float) -> void:
 
 
 func _snap_to_track(track_tile: TrackTile) -> void:
-	var relative_position = track_tile.global_position.x - get_parent().global_position.x
+	var offset_to_center := Vector2(
+		get_parent().global_position.x - track_tile.global_position.x, 0
+	)
 
 	_tween.interpolate_property(
 		self,
 		"position",
 		position,
-		position + Vector2(-relative_position, 0),
+		position + offset_to_center,
 		0.5,
 		Tween.TRANS_EXPO,
 		Tween.EASE_OUT
