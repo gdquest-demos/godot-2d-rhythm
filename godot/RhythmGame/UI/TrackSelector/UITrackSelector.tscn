@@ -13,10 +13,10 @@
 [ext_resource path="res://RhythmGame/UI/TrackSelector/TrackTiles.gd" type="Script" id=11]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 960, 270 )
+extents = Vector2( 960.454, 273.592 )
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5, 200 )
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 5, 217.702 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "fade_in_track"
@@ -86,7 +86,7 @@ collision_mask = 2
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrackCarousel/TrackSelector"]
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="TrackName" parent="." instance=ExtResource( 9 )]
 anchor_top = 0.5
