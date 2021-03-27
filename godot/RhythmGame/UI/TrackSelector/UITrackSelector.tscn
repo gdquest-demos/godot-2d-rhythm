@@ -12,10 +12,10 @@
 [ext_resource path="res://RhythmGame/UI/TrackSelector/TrackTile.tscn" type="PackedScene" id=10]
 [ext_resource path="res://RhythmGame/UI/TrackSelector/TrackTiles.gd" type="Script" id=11]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 960.454, 273.592 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5, 217.702 )
 
 [sub_resource type="Animation" id=3]
@@ -78,7 +78,7 @@ collision_mask = 0
 script = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrackCarousel/DragDetector"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="TrackSelector" type="Area2D" parent="TrackCarousel"]
 collision_layer = 0
@@ -86,7 +86,7 @@ collision_mask = 2
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrackCarousel/TrackSelector"]
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 
 [node name="TrackName" parent="." instance=ExtResource( 9 )]
 anchor_top = 0.5
@@ -121,9 +121,10 @@ volume_db = -80.0
 anims/fade_in_track = SubResource( 3 )
 anims/fade_out_track = SubResource( 4 )
 
+[connection signal="timeout" from="TrackCarousel/TrackTiles/AlignTimer" to="TrackCarousel/TrackTiles" method="_on_AlignTimer_timeout"]
 [connection signal="dragged" from="TrackCarousel/DragDetector" to="TrackCarousel/TrackTiles" method="_on_DragDetector_dragged"]
 [connection signal="input_event" from="TrackCarousel/DragDetector" to="TrackCarousel/DragDetector" method="_on_input_event"]
 [connection signal="area_entered" from="TrackCarousel/TrackSelector" to="TrackCarousel/TrackSelector" method="_on_area_entered"]
-[connection signal="track_selected" from="TrackCarousel/TrackSelector" to="TrackCarousel/TrackTiles" method="_on_track_selected"]
 [connection signal="track_selected" from="TrackCarousel/TrackSelector" to="." method="update_track_info"]
+[connection signal="track_selected" from="TrackCarousel/TrackSelector" to="TrackCarousel/TrackTiles" method="_on_track_selected"]
 [connection signal="pressed" from="GoButton" to="." method="_on_GoButton_pressed"]

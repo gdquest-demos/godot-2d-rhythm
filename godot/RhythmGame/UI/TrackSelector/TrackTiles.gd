@@ -6,7 +6,7 @@ export var track_tile_scene: PackedScene
 
 var _selected_track_tile: TrackTile
 var _track_tiles := []
-var _bound := {"left": 0, "right": 0}
+var _min_x_position := 0.0
 
 onready var _align_timer := $AlignTimer
 onready var _tween := $Tween
@@ -20,8 +20,6 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("touch"):
 		_align_timer.start()
-		yield(_align_timer, "timeout")
-		_snap_to_track(_selected_track_tile)
 
 
 func _process(_delta: float) -> void:
@@ -46,7 +44,7 @@ func _snap_to_track(track_tile: TrackTile) -> void:
 
 func scroll(amount: Vector2) -> void:
 	_tween.stop_all()
-	position.x = clamp(position.x + amount.x, _bound.right, _bound.left)
+	position.x = clamp(position.x + amount.x, _min_x_position, 0)
 	_update_tile_visuals()
 
 
@@ -64,7 +62,7 @@ func _generate_tiles() -> void:
 		separation_current += separation
 		add_child(track_tile)
 
-	_bound.right = -(separation * (_track_tiles.size() - 1))
+	_min_x_position = -(separation * (_track_tiles.size() - 1))
 
 
 func _update_tile_visuals() -> void:
@@ -96,3 +94,7 @@ func _on_track_selected(track_tile: TrackTile) -> void:
 
 func _on_DragDetector_dragged(amount: Vector2) -> void:
 	scroll(amount)
+
+
+func _on_AlignTimer_timeout() -> void:
+	_snap_to_track(_selected_track_tile)
