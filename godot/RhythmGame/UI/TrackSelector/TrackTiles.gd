@@ -1,6 +1,5 @@
 extends Node2D
 
-export var scale_radius := 1000
 export var separation := 450
 export (Array, Resource) var tracks: Array
 export var track_tile_scene: PackedScene
