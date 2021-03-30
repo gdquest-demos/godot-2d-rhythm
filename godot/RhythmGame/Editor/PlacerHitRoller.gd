@@ -24,7 +24,6 @@ func get_data() -> Dictionary:
 		scene = scene,
 		order_number = _order_number,
 		duration = duration,
-		position = position,
 		global_position = global_position,
 		curve = curve
 	}

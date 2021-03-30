@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/roller_sprites.png-ca617084b99e3aceaf7538d364b839a1.stex"
+path="res://.import/roller_sprites.png-bc92136b2646a66e899cb63ab3868549.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RhythmGame/Hits/roller_sprites.png"
-dest_files=[ "res://.import/roller_sprites.png-ca617084b99e3aceaf7538d364b839a1.stex" ]
+source_file="res://RhythmGame/Hits/HitRoller/roller_sprites.png"
+dest_files=[ "res://.import/roller_sprites.png-bc92136b2646a66e899cb63ab3868549.stex" ]
 
 [params]
 

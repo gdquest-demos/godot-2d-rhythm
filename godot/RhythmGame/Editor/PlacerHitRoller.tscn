@@ -3,11 +3,11 @@
 [ext_resource path="res://RhythmGame/UI/LabelCustom.tscn" type="PackedScene" id=1]
 [ext_resource path="res://RhythmGame/Editor/PlacerHitRoller.gd" type="Script" id=2]
 [ext_resource path="res://RhythmGame/Editor/icon_beats.png" type="Texture" id=3]
-[ext_resource path="res://RhythmGame/Hits/HitRoller.tscn" type="PackedScene" id=4]
+[ext_resource path="res://RhythmGame/Hits/HitRoller/HitRoller.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -0.25, 0, 0, 0, 0, 0, 219, 0 )
+"points": PoolVector2Array( 0, 0, 0, 0, -0.25, 0, 0, 0, 0, 0, 288, 96 )
 }
 
 [node name="PlacerHitRoller" type="Path2D"]
